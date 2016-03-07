@@ -42,6 +42,9 @@ public class UserUI extends PersonUI{
 	public User getUser(){
 		return super.thisPerson;
 	}
+	
+	public boolean UpdateUser(String firstName, String lastName, String password, String type){
+	return this.controller.updateUser(super.thisPerson, firstName, lastName, password, type);
 	}
 	
 	
