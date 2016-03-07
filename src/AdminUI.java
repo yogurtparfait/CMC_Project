@@ -18,14 +18,14 @@ public class AdminUI extends PersonUI {
 	public List<Person> getPeople(){
 		return this.controller.getPeople();	
 	}
-	public List<Person> addPerson(String firstName, String lastName, String password, String username, String type){
+	public boolean addPerson(String firstName, String lastName, String password, String username, String type){
 		return this.controller.addPerson(firstName,lastName,password,username,type);	
 	}
 	public boolean changeStatus(Person p){
 		return this.controller.changeStatus(p);	
 	}
-	public boolean updatePerson(String firstName, String lastName, String password, String type){
-		return this.controller.addPerson(firstName,lastName,password,type);	
+	public boolean updatePerson(Person person, String firstName, String lastName, String password, String type){
+		return this.controller.updatePerson(person, firstName,lastName,password,type);	
 	}
 	public void updateSchool(School s, String name,String state,String location,String control,
 	int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
