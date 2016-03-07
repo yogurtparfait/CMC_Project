@@ -2,262 +2,215 @@
 public class School {
 	private String name;
 	private String state;
-	private location location;
-	private control control;
+	private String location;
+	private String control;
 	private int numStudents;
 	private double percentFemale;
 	private int SATVerb;
+	private double SATMath;
+	private double expenses;
+	private double percentFinancialAid;
+	private int numberOfApplicants;
+	private double percentAdmitted;
+	private double percentEnrolled;
+	private int academicsScale;
+	private int socialScale;
+	private int qualityOfLifeScale;
+	/**
+	 * @return the name
+	 */
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
-
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	/**
 	 * @return the state
 	 */
 	public String getState() {
 		return state;
 	}
-
 	/**
 	 * @param state the state to set
 	 */
 	public void setState(String state) {
 		this.state = state;
 	}
-
 	/**
 	 * @return the location
 	 */
-	public location getLocation() {
+	public String getLocation() {
 		return location;
 	}
-
 	/**
 	 * @param location the location to set
 	 */
-	public void setLocation(location location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
-
 	/**
 	 * @return the control
 	 */
-	public control getControl() {
+	public String getControl() {
 		return control;
 	}
-
 	/**
 	 * @param control the control to set
 	 */
-	public void setControl(control control) {
+	public void setControl(String control) {
 		this.control = control;
 	}
-
 	/**
 	 * @return the numStudents
 	 */
 	public int getNumStudents() {
 		return numStudents;
 	}
-
 	/**
 	 * @param numStudents the numStudents to set
 	 */
 	public void setNumStudents(int numStudents) {
 		this.numStudents = numStudents;
 	}
-
 	/**
 	 * @return the percentFemale
 	 */
 	public double getPercentFemale() {
 		return percentFemale;
 	}
-
 	/**
 	 * @param percentFemale the percentFemale to set
 	 */
 	public void setPercentFemale(double percentFemale) {
 		this.percentFemale = percentFemale;
 	}
-
 	/**
 	 * @return the sATVerb
 	 */
 	public int getSATVerb() {
 		return SATVerb;
 	}
-
 	/**
 	 * @param sATVerb the sATVerb to set
 	 */
 	public void setSATVerb(int sATVerb) {
 		SATVerb = sATVerb;
 	}
-
 	/**
-	 * @return the sATmath
+	 * @return the sATMath
 	 */
-	public int getSATmath() {
-		return SATmath;
+	public double getSATMath() {
+		return SATMath;
 	}
-
 	/**
-	 * @param sATmath the sATmath to set
+	 * @param sATMath the sATMath to set
 	 */
-	public void setSATmath(int sATmath) {
-		SATmath = sATmath;
+	public void setSATMath(double sATMath) {
+		SATMath = sATMath;
 	}
-
 	/**
 	 * @return the expenses
 	 */
-	public int getExpenses() {
+	public double getExpenses() {
 		return expenses;
 	}
-
 	/**
 	 * @param expenses the expenses to set
 	 */
-	public void setExpenses(int expenses) {
+	public void setExpenses(double expenses) {
 		this.expenses = expenses;
 	}
-
 	/**
 	 * @return the percentFinancialAid
 	 */
 	public double getPercentFinancialAid() {
 		return percentFinancialAid;
 	}
-
 	/**
 	 * @param percentFinancialAid the percentFinancialAid to set
 	 */
 	public void setPercentFinancialAid(double percentFinancialAid) {
 		this.percentFinancialAid = percentFinancialAid;
 	}
-
 	/**
-	 * @return the numApplications
+	 * @return the numberOfApplicants
 	 */
-	public int getNumApplications() {
-		return numApplications;
+	public int getNumberOfApplicants() {
+		return numberOfApplicants;
 	}
-
 	/**
-	 * @param numApplications the numApplications to set
+	 * @param numberOfApplicants the numberOfApplicants to set
 	 */
-	public void setNumApplications(int numApplications) {
-		this.numApplications = numApplications;
+	public void setNumberOfApplicants(int numberOfApplicants) {
+		this.numberOfApplicants = numberOfApplicants;
 	}
-
 	/**
 	 * @return the percentAdmitted
 	 */
 	public double getPercentAdmitted() {
 		return percentAdmitted;
 	}
-
 	/**
 	 * @param percentAdmitted the percentAdmitted to set
 	 */
 	public void setPercentAdmitted(double percentAdmitted) {
 		this.percentAdmitted = percentAdmitted;
 	}
-
 	/**
 	 * @return the percentEnrolled
 	 */
 	public double getPercentEnrolled() {
 		return percentEnrolled;
 	}
-
 	/**
 	 * @param percentEnrolled the percentEnrolled to set
 	 */
 	public void setPercentEnrolled(double percentEnrolled) {
 		this.percentEnrolled = percentEnrolled;
 	}
-
 	/**
-	 * @return the academics
+	 * @return the academicsScale
 	 */
-	public String getAcademics() {
-		return academics;
+	public int getAcademicsScale() {
+		return academicsScale;
 	}
-
 	/**
-	 * @param academics the academics to set
+	 * @param academicsScale the academicsScale to set
 	 */
-	public void setAcademics(String academics) {
-		this.academics = academics;
+	public void setAcademicsScale(int academicsScale) {
+		this.academicsScale = academicsScale;
 	}
-
 	/**
 	 * @return the socialScale
 	 */
 	public int getSocialScale() {
 		return socialScale;
 	}
-
 	/**
 	 * @param socialScale the socialScale to set
 	 */
 	public void setSocialScale(int socialScale) {
 		this.socialScale = socialScale;
 	}
-
 	/**
-	 * @return the qualityOfLife
+	 * @return the qualityOfLifeScale
 	 */
-	public int getQualityOfLife() {
-		return qualityOfLife;
+	public int getQualityOfLifeScale() {
+		return qualityOfLifeScale;
 	}
-
 	/**
-	 * @param qualityOfLife the qualityOfLife to set
+	 * @param qualityOfLifeScale the qualityOfLifeScale to set
 	 */
-	public void setQualityOfLife(int qualityOfLife) {
-		this.qualityOfLife = qualityOfLife;
+	public void setQualityOfLifeScale(int qualityOfLifeScale) {
+		this.qualityOfLifeScale = qualityOfLifeScale;
 	}
 
-	/**
-	 * @return the emphasis
-	 */
-	public int getEmphasis() {
-		return emphasis;
-	}
-
-	/**
-	 * @param emphasis the emphasis to set
-	 */
-	public void setEmphasis(int emphasis) {
-		this.emphasis = emphasis;
-	}
-
-	private int SATmath;
-	private int expenses;
-	private double percentFinancialAid;
-	private int numApplications;
-	private double percentAdmitted;
-	private double percentEnrolled;
-	private String academics;
-	private int socialScale;
-	private int qualityOfLife;
-	private int emphasis;
-	
-	public School() {
-		// TODO Auto-generated constructor stub
-	}
 
 }

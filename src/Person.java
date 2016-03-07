@@ -5,6 +5,7 @@ public abstract class Person {
 	private String lastName;
 	private String password;
 	private String username;
+	private boolean isLoggedOn;
 	
 	
 	

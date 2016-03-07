@@ -25,7 +25,7 @@ public class UserUI extends PersonUI{
 		return this.controller.saveSchool(s);
 	}
 	
-	public List<School> search((School s, String name,String state,String location,String control,
+	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
