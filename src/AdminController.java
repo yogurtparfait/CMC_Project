@@ -50,7 +50,7 @@ public class AdminController extends PersonController{
 			}
 			
 			public List<School> getSchools(){
-				return DBController.getSchools();
+				return DBController.getSavedSchools();
 			}
 
 }

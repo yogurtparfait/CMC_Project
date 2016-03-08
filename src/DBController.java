@@ -77,7 +77,7 @@ public class DBController {
 		return false;
 	}
 	
-	public static List<School> getSchools(){
+	public static List<School> getSavedSchools(){
 		//TODO
 	}
 	
