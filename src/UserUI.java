@@ -8,6 +8,7 @@ public class UserUI extends PersonUI{
 	public UserUI(User u) {
 		super.thisPerson = u;
 		this.controller = new UserController(u);
+		
 	}
 	
 	public List<School> getSavedSchools(super.thisPerson){

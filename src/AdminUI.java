@@ -4,7 +4,6 @@ public class AdminUI extends PersonUI {
 
 	public AdminController controller;
 	public AdminUI(Admin a) {
-		super.thisPerson = a;
 		this.controller = new AdminController(a);
 	}
 	public void addSchool(String name,String state,String location,String control,
@@ -38,6 +37,6 @@ public class AdminUI extends PersonUI {
 				percentEnrolled,academicsScale,socialScale,qualityOfLifeScale);
 	}
 	public List<School> getSchools(){
-		return this.controller.getSchools(super.thisPerson);
+		return this.controller.getSchools();
 	}
 }

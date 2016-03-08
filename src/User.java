@@ -2,7 +2,9 @@
 public class User extends Person{
 
 	private School[] savedSchools;
-
+	public class User(){
+		super.setIsAdmin(false);
+	}
 	/**
 	 * @return the savedSchools
 	 */

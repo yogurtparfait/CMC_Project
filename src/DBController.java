@@ -32,7 +32,7 @@ public class DBController {
 		//TODO	
 	}
 
-	public static boolean addUser(String firstName, String lastName, String password, String username){
+	public static boolean addPerson(String firstName, String lastName, String password, String username){
 		//TODO	
 		return false;
 	}
@@ -42,14 +42,25 @@ public class DBController {
 		return false;
 	}
 	
+	//True if active
+	public static boolean getActiveState(Person p){
+		//TODO
+		return true;
+	}
+	
 	//Should this update person in general? Can an admin update an admin?
-	public static boolean updateUser(User u,String firstName, String lastName, String password, String username){
+	public static boolean updatePerson(Person person,String firstName, String lastName, String password){
 		//TODO	
 		return false;
 	}
 	
 	public static boolean logOut(Person p){
 	//TODO
+		return false;
+	}
+	
+	public static boolean logInPerson(Person p){
+		//TODO
 		return false;
 	}
 	
@@ -64,6 +75,10 @@ public class DBController {
 	public static boolean deactivate(Person p){
 	//TODO
 		return false;
+	}
+	
+	public static List<School> getSchools(){
+		//TODO
 	}
 	
 }
