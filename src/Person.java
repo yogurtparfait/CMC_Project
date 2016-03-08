@@ -63,7 +63,7 @@ public class Person {
 	}
 	
 	public boolean getIsAdmin(){
-		return this.isAdmin();
+		return this.isAdmin;
 	}
 	
 }

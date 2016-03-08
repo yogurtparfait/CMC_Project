@@ -1,18 +1,17 @@
 
-import java.awt.List;
+import java.util.List;
 
 public class UserUI extends PersonUI{
 
 	public UserController controller;
 	
 	public UserUI(User u) {
-		super.thisPerson = u;
 		this.controller = new UserController(u);
 		
 	}
 	
-	public List<School> getSavedSchools(super.thisPerson){
-		return this.controller.getSavedSchools(super.thisPerson);
+	public List<School> getSavedSchools(){
+		return this.controller.getSavedSchools();
 	}
 	
 	public List<String> displaySchoolInfo(School s){
@@ -31,7 +30,7 @@ public class UserUI extends PersonUI{
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
-		return this.controller.search((name,state,location,control,
+		return this.controller.search(name,state,location,control,
 				numStudents,percentFemale,SATVerb,SATMath,expenses,
 				percentFinancialAid,numberOfApplicants,percentAdmitted,
 				percentEnrolled,academicsScale,socialScale,qualityOfLifeScale);
@@ -42,11 +41,11 @@ public class UserUI extends PersonUI{
 	}
 	
 	public User getUser(){
-		return super.thisPerson;
+		return controller.getUser();
 	}
 	
 	public boolean UpdateUser(String firstName, String lastName, String password, String type){
-	return this.controller.updateUser(super.thisPerson, firstName, lastName, password, type);
+	return this.controller.UpdateUser(firstName, lastName, password, type);
 	}
 	
 	

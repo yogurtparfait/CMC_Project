@@ -1,6 +1,6 @@
 
 public class Admin extends Person{
-	public class Admin(){
+	public Admin(){
 		super.setIsAdmin(true);
 		
 	}

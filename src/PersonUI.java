@@ -1,18 +1,19 @@
 
 public class PersonUI {
 
-	public PersonUI() {
-		
-		public PersonController controller;
+	private PersonController controller;
 
+	public PersonUI() {
+		this.controller = new PersonController(new Person());
+	}
 		
-		public boolean logOn(){
-			return this.controller.logOn(String u, String password, boolean steal);
+		public PersonUI logOn(String username, String password, boolean steal){
+			return this.controller.logOn(username,password,steal);
 		}
 		public boolean logOut(){
-			this.controller.logOut();
+			return this.controller.logOut();
 		}
 		}
-	}
+	
 
-}
+

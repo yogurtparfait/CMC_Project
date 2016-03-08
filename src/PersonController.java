@@ -8,17 +8,17 @@ public class PersonController {
 		this.thisPerson = p;
 	}
 	
-	public personUI logOn(String username, String password, boolean steal){
+	public PersonUI logOn(String username, String password, boolean steal){
 		//Steal does nothing.
 		
-		User foundUser = DBController.findByUserName(username);
-		if(password.equals(foundUser.getPassword())){
-			if(DBController.logInPerson(foundUser)){
-				if(foundUser.getIsAdmin()){
-					return new AdminUI(foundUser);
+		Person foundPerson = DBController.findByUserName(username);
+		if(password.equals(foundPerson.getPassword())){
+			if(DBController.logInPerson(foundPerson)){
+				if(foundPerson.getIsAdmin()){
+					return new AdminUI((Admin)foundPerson);
 				}
 				else //Person is user 
-					{ return new UserUI(foundUser);
+					{ return new UserUI((User)foundPerson);
 					}
 			}
 			else return null;//make sure to catch this
@@ -27,11 +27,11 @@ public class PersonController {
 		}
 	
 			
-		return false;
+		return null;//make sure to catch this
 	}
 	
 	public boolean logOut(){
-		if(this.thisPerson==null) return false
+		if(this.thisPerson==null) return false;
 			else return DBController.logOut(this.thisPerson);
 	}
 	
