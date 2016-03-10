@@ -22,6 +22,28 @@ public class School {
 	/**
 	 * @return the name
 	 */
+	public School(){}
+	public School(String name,String state,String location,String control,
+			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
+		this.name = name;
+		this.state = state;
+		this.location = location;
+		this.control = control;
+		this.numStudents = numStudents;
+		this.percentFemale = percentFemale;
+		this.SATVerb = SATVerb;
+		this.SATMath = SATMath;
+		this.expenses = expenses;
+		this.percentFinancialAid = percentFinancialAid;
+		this.numberOfApplicants = numberOfApplicants;
+		this.percentAdmitted = percentAdmitted;
+		this.percentEnrolled = percentEnrolled;
+		this.academicsScale = academicsScale;
+		this.socialScale = socialScale;
+		this.qualityOfLifeScale = qualityOfLifeScale;
+	}
 	public String getName() {
 		return name;
 	}
