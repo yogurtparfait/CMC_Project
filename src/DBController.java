@@ -71,7 +71,6 @@ public class DBController {
 		List<School> returnSchools = new ArrayList<School>();
 		for(String[] currentUsername:userSchools){
 		if(currentUsername[0].equals(u.getUsername())){
-			//TODO
 			for(String[] currentSchool:schools){
 				if(currentUsername[1].equals(currentSchool[0])){
 					returnSchools.add(new School(
