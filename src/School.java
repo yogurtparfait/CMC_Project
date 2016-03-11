@@ -6,7 +6,7 @@ public class School {
 	private String control;
 	private int numStudents;
 	private double percentFemale;
-	private int SATVerb;
+	private double SATVerb;
 	private double SATMath;
 	private double expenses;
 	private double percentFinancialAid;
@@ -24,7 +24,7 @@ public class School {
 	 */
 	public School(){}
 	public School(String name,String state,String location,String control,
-			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
 		this.name = name;
@@ -116,13 +116,13 @@ public class School {
 	/**
 	 * @return the sATVerb
 	 */
-	public int getSATVerb() {
+	public double getSATVerb() {
 		return SATVerb;
 	}
 	/**
 	 * @param sATVerb the sATVerb to set
 	 */
-	public void setSATVerb(int sATVerb) {
+	public void setSATVerb(double sATVerb) {
 		SATVerb = sATVerb;
 	}
 	/**
