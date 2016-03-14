@@ -1,7 +1,6 @@
-import java.util.List;
 import java.util.ArrayList;
-//need to import the database class. not sure how.
-
+import java.util.List;
+import dblibrary.project.csci230.*;
 public class DBController {
 	
 	
@@ -10,7 +9,7 @@ public class DBController {
 	private UniversityDBLibrary library;
 	
 	public DBController() {
-		this.library = UniversityDBLibrary("yogurtparf","yogurtparf","jmny4");
+		this.library = new UniversityDBLibrary("yogurtparf","yogurtparf","jmny4");
 	}
 	
 	public boolean unSaveSchool(User u, School s){
@@ -50,7 +49,7 @@ public class DBController {
 		}
 		return null;
 		}
-	}
+	
 	
 	public boolean createSchool(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
@@ -66,7 +65,7 @@ public class DBController {
 	}
 	
 	public List<School> getUserSchools(User u){
-		String[][] userSchools = library.getUsernamesWithSavedSchools();
+		String[][] userSchools = library.user_getUsernamesWithSavedSchools();
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		for(String[] currentUsername:userSchools){
@@ -110,9 +109,9 @@ public class DBController {
 				}
 			}
 		}
-		return returnSchools;
+		
 		}
-			
+		return returnSchools;	
 	}
 	
 	public List<Person> getPeople(){
@@ -143,7 +142,7 @@ public class DBController {
 		Person p = this.findByUserName(username);
 		if(!(p==null)) return false;
 		else{
-			int i = library.user_addUser(firstName,lastName,username,password);
+			int i = library.user_addUser(firstName,lastName,username,password,'u');
 			if(i==-1) return false;
 			else return true;
 		}
@@ -252,4 +251,5 @@ public class DBController {
 		return returnSchools;
 		}
 		
+
 	}
