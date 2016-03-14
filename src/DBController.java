@@ -488,6 +488,7 @@ public class DBController {
 			for(int i = 0;i<5;i++){
 				returnSchools.add(schoolList[i]);
 			}
+			
 			return returnSchools;
 			
 			}
