@@ -46,10 +46,11 @@ public class AdminController extends PersonController{
 			public void updateSchool(School s, String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale,
+			String[] emphases){
 				database.updateSchool(s, name, state, location, control, numStudents, 
 						percentFemale, SATVerb, SATMath, expenses, percentFinancialAid, 
-						numberOfApplicants, percentAdmitted, percentEnrolled, academicsScale, socialScale, qualityOfLifeScale);
+						numberOfApplicants, percentAdmitted, percentEnrolled, academicsScale, socialScale, qualityOfLifeScale, emphases);
 				
 			}
 			

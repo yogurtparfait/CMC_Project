@@ -183,22 +183,35 @@ public class DBController {
 		else return true;
 	}
 	
+	//for steal
 	public boolean logOut(Person p){
 	//TODO
-		return false;
+		return true;
 	}
 	
+	//for steal
 	public boolean logInPerson(Person p){
 		//TODO
-		return false;
+		return true;
 	}
 	
 	public boolean updateSchool(School s, String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
-		//TODO
-		return false;
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
+		
+		int i = library.university_editUniversity(name, state, location, control, numStudents, 
+				percentFemale, SATVerb, SATMath, expenses, percentFinancialAid, numberOfApplicants, 
+				percentAdmitted, percentEnrolled, academicsScale, socialScale, qualityOfLifeScale);
+		
+		if(i==-1) return false;
+		
+		for(String e:emphases){
+		int j = library.university_addUniversityEmphasis(name,e);
+		if(j==-1) return false;
+		}
+		
+		return true;
 	}	
 	
 	public boolean deactivate(Person p){
@@ -251,5 +264,228 @@ public class DBController {
 		return returnSchools;
 		}
 		
+	public List<School> search(String name,String state,String location,String control,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
+			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale,
+			String[] emphases){
+	
+		String[][] currentEmphases;
+		boolean emphasesEqual = false;
+		boolean emphasisFound = false;
+		String[][] schools = library.university_getUniversities();
+		List<School> returnSchools = new ArrayList<School>();
+		
 
+			for(String[] currentSchool:schools){
+				currentEmphases = library.university_getNamesWithEmphases();
+				
+				//Checks Emphases
+				for(String[] s:currentEmphases){
+					if(s[0]==name){
+						for(String t:emphases){
+							if(s[1]==t) emphasisFound = true;
+						}
+						if(emphasisFound) emphasesEqual = true;
+						else emphasesEqual = false;
+					}
+				}
+				
+				if(
+							//name
+							(currentSchool[0]== name || name==null) &&
+							//state
+							(currentSchool[1]== state || state==null) &&
+							//location
+							(currentSchool[2]== location || location==null) &&
+							//control
+							(currentSchool[3]== control || control==null) &&
+							//numberOfStudents
+							(Integer.parseInt(currentSchool[4])== numStudents || numStudents==-1) &&
+							//PercentFemale
+							(Double.parseDouble(currentSchool[5])== percentFemale || percentFemale==-1) &&
+							//SATVerbal
+							(Double.parseDouble(currentSchool[6])== SATVerb || SATVerb==-1) &&
+							//SATMath
+							(Double.parseDouble(currentSchool[7])== SATMath || SATMath==-1) &&
+							//Expenses
+							(Double.parseDouble(currentSchool[8])== expenses || expenses==-1) &&
+							//PercentFincancialAid
+							(Double.parseDouble(currentSchool[9])== percentFinancialAid || percentFinancialAid==-1) &&
+							//NumberOfApplicants
+							(Integer.parseInt(currentSchool[10])== numberOfApplicants || numberOfApplicants==-1) &&
+							//PercentAdmitted
+							(Double.parseDouble(currentSchool[11])== percentAdmitted || percentAdmitted==-1) &&
+							//PercentEnrolled
+							(Double.parseDouble(currentSchool[12])== percentEnrolled || percentEnrolled==-1) &&
+							//AcademicsScale
+							(Integer.parseInt(currentSchool[13])== academicsScale || academicsScale==-1) &&
+							//SocialScale
+							(Integer.parseInt(currentSchool[14])== socialScale || socialScale==-1) &&
+							//QualityOfLife
+							(Integer.parseInt(currentSchool[15])== qualityOfLifeScale || qualityOfLifeScale==-1)&&
+							//Emphases
+							emphasesEqual)
+							
+				
+				{
+					
+
+					returnSchools.add(new School(
+							//name
+							currentSchool[0],
+							//state
+							currentSchool[1],
+							//location
+							currentSchool[2],
+							//control
+							currentSchool[3],
+							//numberOfStudents
+							Integer.parseInt(currentSchool[4]),
+							//PercentFemale
+							Double.parseDouble(currentSchool[5]),
+							//SATVerbal
+							Double.parseDouble(currentSchool[6]),
+							//SATMath
+							Double.parseDouble(currentSchool[7]),
+							//Expenses
+							Double.parseDouble(currentSchool[8]),
+							//PercentFincancialAid
+							Double.parseDouble(currentSchool[9]),
+							//NumberOfApplicants
+							Integer.parseInt(currentSchool[10]),
+							//PercentAdmitted
+							Double.parseDouble(currentSchool[11]),
+							//PercentEnrolled
+							Double.parseDouble(currentSchool[12]),
+							//AcademicsScale
+							Integer.parseInt(currentSchool[13]),
+							//SocialScale
+							Integer.parseInt(currentSchool[14]),
+							//QualityOfLife
+							Integer.parseInt(currentSchool[15])));
+				}
+				}
+			return returnSchools;
+				}
+			
+		
+
+	
+	
+	public List<School> recommendations(School s){
+		String[][] schools = library.university_getUniversities();
+		List<School> returnSchools = new ArrayList<School>();
+		School[] schoolList = new School[300];
+		double[] searchVector = new double[15];
+		double[] foundVector = new double[15];
+		double total = 0;
+		School holder; //placeholder for sorting, total is used for the doubles.
+		int counter = 0;
+		
+			//calculates the difference vector
+			for(String[] currentSchool:schools){
+				
+							//name
+									if(currentSchool[0].equals(s.getName())) searchVector[0] = 0;
+									else searchVector[0] = 1;
+							//state
+									if(currentSchool[1].equals(s.getState())) searchVector[1] = 0;
+									else searchVector[1] = 1;
+							//location
+									if(currentSchool[2].equals(s.getLocation())) searchVector[2] = 0;
+									else searchVector[2] = 1;
+							//control
+									if(currentSchool[3].equals(s.getName())) searchVector[3] = 0;
+									else searchVector[3] = 1;
+							//numberOfStudents
+									searchVector[4] = Math.abs(Double.parseDouble(currentSchool[4]) - s.getNumStudents())/s.getNumStudents();
+							//PercentFemale
+									searchVector[5] = Math.abs(Double.parseDouble(currentSchool[5]) - s.getPercentFemale())/s.getPercentFemale();
+							//SATVerbal
+									searchVector[6] = Math.abs(Double.parseDouble(currentSchool[6]) - s.getSATVerb())/s.getSATVerb();
+							//SATMath
+									searchVector[7] = Math.abs(Double.parseDouble(currentSchool[7]) - s.getSATMath())/s.getSATMath();
+							//Expenses
+									searchVector[8] = Math.abs(Double.parseDouble(currentSchool[8]) - s.getExpenses())/s.getExpenses();
+							//PercentFincancialAid
+									searchVector[9] = Math.abs(Double.parseDouble(currentSchool[9]) - s.getPercentFinancialAid())/s.getPercentFinancialAid();
+							//NumberOfApplicants
+									searchVector[10] = Math.abs(Double.parseDouble(currentSchool[10]) - s.getNumberOfApplicants())/s.getNumberOfApplicants();
+							//PercentAdmitted
+									searchVector[11] = Math.abs(Double.parseDouble(currentSchool[11]) - s.getPercentAdmitted())/s.getPercentAdmitted();
+							//PercentEnrolled
+									searchVector[12] = Math.abs(Double.parseDouble(currentSchool[12]) - s.getPercentEnrolled())/s.getPercentEnrolled();
+							//AcademicsScale
+									searchVector[13] = Math.abs(Double.parseDouble(currentSchool[13]) - s.getAcademicsScale())/s.getAcademicsScale();
+							//SocialScale
+									searchVector[14] = Math.abs(Double.parseDouble(currentSchool[14]) - s.getSocialScale())/s.getSocialScale();
+							//QualityOfLife
+									searchVector[15] = Math.abs(Double.parseDouble(currentSchool[15]) - s.getQualityOfLifeScale())/s.getQualityOfLifeScale();
+
+									total = 0;
+									for(double d:searchVector){
+										total = total + d;
+									}
+									foundVector[counter] = total;
+									
+									schoolList[counter++] = (new School(
+											//name
+											currentSchool[0],
+											//state
+											currentSchool[1],
+											//location
+											currentSchool[2],
+											//control
+											currentSchool[3],
+											//numberOfStudents
+											Integer.parseInt(currentSchool[4]),
+											//PercentFemale
+											Double.parseDouble(currentSchool[5]),
+											//SATVerbal
+											Double.parseDouble(currentSchool[6]),
+											//SATMath
+											Double.parseDouble(currentSchool[7]),
+											//Expenses
+											Double.parseDouble(currentSchool[8]),
+											//PercentFincancialAid
+											Double.parseDouble(currentSchool[9]),
+											//NumberOfApplicants
+											Integer.parseInt(currentSchool[10]),
+											//PercentAdmitted
+											Double.parseDouble(currentSchool[11]),
+											//PercentEnrolled
+											Double.parseDouble(currentSchool[12]),
+											//AcademicsScale
+											Integer.parseInt(currentSchool[13]),
+											//SocialScale
+											Integer.parseInt(currentSchool[14]),
+											//QualityOfLife
+											Integer.parseInt(currentSchool[15])));
+		
+								}
+			//Found vector now has distances for each school.
+			//to find the closest five:
+			
+			for(int i = 0;i<foundVector.length;i++){
+				for(int j = 0;j<foundVector.length;j++){
+					if(foundVector[i]>foundVector[i+1]){
+						total = foundVector[i+1];
+						holder = schoolList[i+1];
+						foundVector[i+1] = foundVector[i];
+						schoolList[i+1] = schoolList[i];
+						foundVector[i] = foundVector[i+1];
+						schoolList[i+1] = schoolList[i];
+					}
+					}
+			}
+			
+			//schoolList is now sorted shortest to longest.
+			
+			for(int i = 0;i<5;i++){
+				returnSchools.add(schoolList[i]);
+			}
+			return returnSchools;
+			
+			}
 	}
