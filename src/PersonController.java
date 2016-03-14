@@ -3,6 +3,7 @@ import java.util.List;
 public class PersonController {
 	
 	private Person thisPerson;
+	private DBController controller;
 	public PersonController(){}
 	public PersonController(Person p){
 		this.thisPerson = p;
@@ -11,9 +12,9 @@ public class PersonController {
 	public PersonUI logOn(String username, String password, boolean steal){
 		//Steal does nothing.
 		
-		Person foundPerson = DBController.findByUserName(username);
+		Person foundPerson = controller.findByUserName(username);
 		if(password.equals(foundPerson.getPassword())){
-			if(DBController.logInPerson(foundPerson)){
+			if(controller.logInPerson(foundPerson)){
 				if(foundPerson.getIsAdmin()){
 					return new AdminUI((Admin)foundPerson);
 				}
@@ -32,7 +33,7 @@ public class PersonController {
 	
 	public boolean logOut(){
 		if(this.thisPerson==null) return false;
-			else return DBController.logOut(this.thisPerson);
+			else return controller.logOut(this.thisPerson);
 	}
 	
 	
