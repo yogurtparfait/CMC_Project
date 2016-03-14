@@ -1,9 +1,9 @@
+import java.util.List;
 
 public class AdminUI extends PersonUI {
 
 	public AdminController controller;
 	public AdminUI(Admin a) {
-		super.thisPerson = a;
 		this.controller = new AdminController(a);
 	}
 	public void addSchool(String name,String state,String location,String control,
@@ -21,8 +21,8 @@ public class AdminUI extends PersonUI {
 	public boolean addPerson(String firstName, String lastName, String password, String username, String type){
 		return this.controller.addPerson(firstName,lastName,password,username,type);	
 	}
-	public boolean changeStatus(Person p){
-		return this.controller.changeStatus(p);	
+	public void changeStatus(Person p){
+		this.controller.changeStatus(p);	
 	}
 	public boolean updatePerson(Person person, String firstName, String lastName, String password, String type){
 		return this.controller.updatePerson(person, firstName,lastName,password,type);	
@@ -37,6 +37,6 @@ public class AdminUI extends PersonUI {
 				percentEnrolled,academicsScale,socialScale,qualityOfLifeScale);
 	}
 	public List<School> getSchools(){
-		return this.controller.getSchools(super.thisPerson);
+		return this.controller.getSchools();
 	}
 }

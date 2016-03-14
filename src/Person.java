@@ -1,11 +1,13 @@
 
-public abstract class Person {
+public class Person {
 
 	private String firstName; 
 	private String lastName;
 	private String password;
 	private String username;
+	//IsLoggedOn currently does nothing
 	private boolean isLoggedOn;
+	private boolean isAdmin;
 	
 	
 	
@@ -55,4 +57,13 @@ public abstract class Person {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public void setIsAdmin(boolean b){
+		this.isAdmin = b;
+	}
+	
+	public boolean getIsAdmin(){
+		return this.isAdmin;
+	}
+	
 }

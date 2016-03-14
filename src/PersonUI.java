@@ -1,22 +1,19 @@
 
 public class PersonUI {
 
-	public PersonUI() {
-		
-		public PersonController controller;
-		public Person thisPerson;
-		
-		public boolean logOn(){
-			return this.controller.logOn(String u, String password, boolean steal);
-		}
-		public boolean logOut(person p){
-			
-			if(this.thisPerson==null)
-				return false;
-			else
-				return this.controller.logOut(person);
-		}
-		}
-	}
+	private PersonController controller;
 
-}
+	public PersonUI() {
+		this.controller = new PersonController(new Person());
+	}
+		
+		public PersonUI logOn(String username, String password, boolean steal){
+			return this.controller.logOn(username,password,steal);
+		}
+		public boolean logOut(){
+			return this.controller.logOut();
+		}
+		}
+	
+
+
