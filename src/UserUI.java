@@ -14,6 +14,7 @@ public class UserUI extends PersonUI{
 		return this.controller.getSavedSchools();
 	}
 	
+	//Returns all info as string with emphases at the end
 	public List<String> displaySchoolInfo(School s){
 		return this.controller.displaySchoolInfo(s);
 	}
@@ -26,14 +27,16 @@ public class UserUI extends PersonUI{
 		return this.controller.saveSchool(s);
 	}
 	
+	//give null or -1 for empty fields
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale,
+			String [] emphases){
 		return this.controller.search(name,state,location,control,
 				numStudents,percentFemale,SATVerb,SATMath,expenses,
 				percentFinancialAid,numberOfApplicants,percentAdmitted,
-				percentEnrolled,academicsScale,socialScale,qualityOfLifeScale);
+				percentEnrolled,academicsScale,socialScale,qualityOfLifeScale, emphases);
 	}
 	
 	public List<School> getRecommendations(School s){

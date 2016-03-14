@@ -5,6 +5,7 @@ import java.util.List;
 public class UserController {
 	private User thisUser;
 	private DBController database;
+	private SearchController search;
 	public UserController(User u) {
 		this.thisUser = u;
 	}
@@ -33,6 +34,10 @@ public class UserController {
 		returnString.add(Integer.toString(s.getSocialScale()));
 		returnString.add(Integer.toString(s.getQualityOfLifeScale()));
 		
+		for(String e:s.getEmphases()){
+			returnString.add(e);
+		}
+		
 		return returnString;
 	}
 	
@@ -47,15 +52,16 @@ public class UserController {
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
-		return SearchController.search(name, state, location, control, numStudents, percentFemale, 
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale,
+			String[] emphases){
+		return search.search(name, state, location, control, numStudents, percentFemale, 
 				SATVerb, SATMath, expenses, percentFinancialAid, numberOfApplicants, percentAdmitted, 
-				percentEnrolled, academicsScale, socialScale, qualityOfLifeScale);
+				percentEnrolled, academicsScale, socialScale, qualityOfLifeScale, emphases);
 		//Make sure to catch nulls for no schools found.
 	}
 	
 	public List<School> getRecommendations(School s){
-		return SearchController.recommendations(s);
+		return search.recommendations(s);
 	}
 	
 	public boolean UpdateUser(String firstName, String lastName, String password, String type){
