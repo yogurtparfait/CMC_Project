@@ -73,19 +73,29 @@ public class TextDriver {
 	public void manageSchools(){}
 	public void searchSchools(){}
 	public void logout(){}
-	public void manageUsers(){}
+	public void managePeople(){}
 	public void editProfile(){}
 	public void removeSchool(){}
 	public void viewSchool(){}
 	public void viewSearchResults(){}
-	public void viewUser(){}
-	public void addUser(){
-		
+	public void viewPerson(){}
+	public void addPerson(){
+		System.out.println("Enter firstname");
+		String firstName = sc.nextLine();
+		System.out.println("Enter lastname");
+		String lastName = sc.nextLine();
+		System.out.println("Enter password");
+		String password = sc.nextLine();
+		System.out.println("Enter username");
+		String username = sc.nextLine();
+		System.out.println("Enter type");
+		String type = sc.nextLine();
+		System.out.println(adminUI.addPerson(firstName,lastName, password, username,type));
 		
 	}
 	public void addUniversity(){}
 	public void editUniversity(){}
 	public void viewSchoolAndRecommendations(){}
 	public void changeActiveStatusUser(){}
-	public void editUser(){}
+	public void editPerson(){}
 }
