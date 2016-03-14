@@ -207,8 +207,8 @@ public class DBController {
 		if(i==-1) return false;
 		
 		for(String e:emphases){
-		int j = library.university_addUniversityEmphasis(name,e);
-		if(j==-1) return false;
+			int j = library.university_addUniversityEmphasis(name,e);
+			if(j==-1) return false;
 		}
 		
 		return true;
@@ -281,13 +281,16 @@ public class DBController {
 				currentEmphases = library.university_getNamesWithEmphases();
 				
 				//Checks Emphases
-				for(String[] s:currentEmphases){
-					if(s[0]==name){
-						for(String t:emphases){
-							if(s[1]==t) emphasisFound = true;
-						}
-						if(emphasisFound) emphasesEqual = true;
-						else emphasesEqual = false;
+				for(String t:emphases){
+					for(String[] s:currentEmphases){
+						if((s[0]==name)&&(s[1]==t)){
+							emphasisFound = true;
+						}	
+					}
+					if(emphasisFound) emphasesEqual = true;
+					else{
+						emphasesEqual = false;
+						break;
 					}
 				}
 				
