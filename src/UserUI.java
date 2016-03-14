@@ -26,6 +26,7 @@ public class UserUI extends PersonUI{
 		return this.controller.saveSchool(s);
 	}
 	
+	//give null or -1 for empty fields
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
