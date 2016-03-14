@@ -183,22 +183,35 @@ public class DBController {
 		else return true;
 	}
 	
+	//for steal
 	public boolean logOut(Person p){
 	//TODO
-		return false;
+		return true;
 	}
 	
+	//for steal
 	public boolean logInPerson(Person p){
 		//TODO
-		return false;
+		return true;
 	}
 	
 	public boolean updateSchool(School s, String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
-		//TODO
-		return false;
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
+		
+		int i = library.university_editUniversity(name, state, location, control, numStudents, 
+				percentFemale, SATVerb, SATMath, expenses, percentFinancialAid, numberOfApplicants, 
+				percentAdmitted, percentEnrolled, academicsScale, socialScale, qualityOfLifeScale);
+		
+		if(i==-1) return false;
+		
+		for(String e:emphases){
+		int j = library.university_addUniversityEmphasis(name,e);
+		if(j==-1) return false;
+		}
+		
+		return true;
 	}	
 	
 	public boolean deactivate(Person p){
@@ -254,14 +267,30 @@ public class DBController {
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale,
+			String[] emphases){
 	
-
+		String[][] currentEmphases;
+		boolean emphasesEqual = false;
+		boolean emphasisFound = false;
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		
 
 			for(String[] currentSchool:schools){
+				currentEmphases = library.university_getNamesWithEmphases();
+				
+				//Checks Emphases
+				for(String[] s:currentEmphases){
+					if(s[0]==name){
+						for(String t:emphases){
+							if(s[1]==t) emphasisFound = true;
+						}
+						if(emphasisFound) emphasesEqual = true;
+						else emphasesEqual = false;
+					}
+				}
+				
 				if(
 							//name
 							(currentSchool[0]== name || name==null) &&
@@ -294,7 +323,12 @@ public class DBController {
 							//SocialScale
 							(Integer.parseInt(currentSchool[14])== socialScale || socialScale==-1) &&
 							//QualityOfLife
-							(Integer.parseInt(currentSchool[15])== qualityOfLifeScale || qualityOfLifeScale==-1)) {
+							(Integer.parseInt(currentSchool[15])== qualityOfLifeScale || qualityOfLifeScale==-1)&&
+							//Emphases
+							emphasesEqual)
+							
+				
+				{
 					
 
 					returnSchools.add(new School(
