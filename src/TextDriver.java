@@ -53,9 +53,9 @@ public class TextDriver {
 		boolean steal = sc.nextBoolean();*/
 		
 		System.out.println("Username: ImadUser");
-		System.out.println("Password: ImadPass ");
+		System.out.println("Password: Edited ");
 		String username = "ImadUser";
-		String password = "ImadPass";
+		String password = "Edited";
 		boolean steal = true;
 		System.out.println("logon result");
 		ui = ui.logOn(username, password, steal);

@@ -7,6 +7,7 @@ public class PersonController {
 	public PersonController(){}
 	public PersonController(Person p){
 		this.thisPerson = p;
+		this.controller=new DBController();
 	}
 	
 	public PersonUI logOn(String username, String password, boolean steal){
