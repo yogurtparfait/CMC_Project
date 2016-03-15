@@ -190,8 +190,12 @@ public class TextDriver {
 		System.out.println();
 	}
 	public void manageSavedSchools(){
-		
-		
+		List <School> schools = userUI.getSavedSchools();
+		for(School s: schools)
+		{
+			System.out.println(s.getName());
+		}
+		System.out.println();
 	}
 	
 	public void searchSchools(){}

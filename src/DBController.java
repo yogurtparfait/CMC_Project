@@ -75,6 +75,7 @@ public class DBController {
 	
 	public List<School> getUserSchools(User u){
 		String[][] userSchools = library.user_getUsernamesWithSavedSchools();
+		System.out.println(userSchools ==null);
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		for(String[] currentUsername:userSchools){
