@@ -17,6 +17,9 @@ public class PersonUI {
 			return this.controller.getActiveState(p);
 			
 		}
+		public School getSchoolByName(String name){
+			return this.controller.getSchoolByName(name);
+		}
 }
 	
 

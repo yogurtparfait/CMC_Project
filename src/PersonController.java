@@ -3,19 +3,19 @@ import java.util.List;
 public class PersonController {
 	
 	private Person thisPerson;
-	private DBController controller;
+	private DBController database;
 	public PersonController(){}
 	public PersonController(Person p){
 		this.thisPerson = p;
-		this.controller=new DBController();
+		this.database=new DBController();
 	}
 	
 	public PersonUI logOn(String username, String password, boolean steal){
 		//Steal does nothing.
 		
-		Person foundPerson = controller.findByUserName(username);
+		Person foundPerson = database.findByUserName(username);
 		if(password.equals(foundPerson.getPassword())){
-			if(controller.logInPerson(foundPerson)){
+			if(database.logInPerson(foundPerson)){
 				if(foundPerson.getIsAdmin()){
 					return new AdminUI((Admin)foundPerson);
 				}
@@ -34,7 +34,7 @@ public class PersonController {
 	
 	public boolean logOut(){
 		if(this.thisPerson==null) return false;
-			else return controller.logOut(this.thisPerson);
+			else return database.logOut(this.thisPerson);
 	}
 	
 	
@@ -43,6 +43,9 @@ public class PersonController {
 	}
 	public char getActiveState(Person p)
 	{
-		return controller.getActiveState(p);
+		return database.getActiveState(p);
+	}
+	public School getSchoolByName(String name){
+		return database.getSchoolByName(name);
 	}
 }
