@@ -8,6 +8,7 @@ public class Person {
 	//IsLoggedOn currently does nothing
 	private boolean isLoggedOn;
 	private boolean isAdmin;
+
 	
 	
 	
@@ -65,5 +66,5 @@ public class Person {
 	public boolean getIsAdmin(){
 		return this.isAdmin;
 	}
-	
+
 }

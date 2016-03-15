@@ -19,30 +19,58 @@ public class TextDriver {
 	}
 	
 	public static void main(String[] args) {
-		TextDriver driver = new TextDriver();		
+		TextDriver driver = new TextDriver();
+		Scanner sc = new Scanner(System.in);    //using because eclipse truncates commandline output before you can read it
+		
 		System.out.println("Logging in as ImadUser");
 		driver.login();
+		sc.nextLine();
 		System.out.println("Manage People");
 		driver.managePeople();
+		sc.nextLine();
 		System.out.println("Add Person");
 		driver.addPerson();
+		sc.nextLine();
 		System.out.println("Edit Person");
 		driver.updatePerson();
+		sc.nextLine();
 		System.out.println("Deactivate/Activate Person");
 		driver.changeActiveStatusPerson();
+		sc.nextLine();
 		System.out.println("Manage People");
 		driver.managePeople();
+		sc.nextLine();
 		System.out.println();
 		System.out.println("Manage Universities");
 		driver.manageSchools();
+		sc.nextLine();
 		System.out.println("Add University");
 		driver.addUniversity();
+		sc.nextLine();
 		System.out.println("Edit University");
-		driver.editUniversity();
+		driver.updateUniversity();
+		sc.nextLine();
 		System.out.println("Manage Universities");
 		driver.manageSchools();
+		sc.nextLine();
 		System.out.println();
 		System.out.println("Logging out ImadUser");
+		driver.logout();
+		
+		sc.nextLine();
+		System.out.println("Logging in as user");
+		driver.loginUser();
+		sc.nextLine();
+		System.out.println("manage profile: ");
+		driver.manageProfile();
+		sc.nextLine();
+		System.out.println("edit profile: ");
+		driver.updateProfile();
+		sc.nextLine();
+		System.out.println("Manage Saved Schools");
+		driver.manageSavedSchools();
+		
+		
 		
 		
 		
@@ -110,7 +138,36 @@ public class TextDriver {
 		}
 
 	}
-	public void manageProfile(){}
+	public void loginUser(){
+		System.out.println("Username: juser");
+		System.out.println("Password: user");
+		ui = ui.logOn("juser","user", true);
+		if (ui instanceof UserUI)
+		{
+			userUI = (UserUI) ui;
+			System.out.println("user");
+		}
+		else if (ui instanceof AdminUI)
+		{
+			adminUI = (AdminUI) ui;
+			System.out.println("admin");
+		}
+		else
+		{
+			System.out.println("Issssssuuuuue with login");
+		}
+	}
+	
+	public void manageProfile(){
+		User user = userUI.getUser();
+		System.out.println("First Name: " + user.getFirstName());
+		System.out.println("Last Name: " + user.getLastName());
+		System.out.println("Username: " + user.getUsername());
+		System.out.println("Password: " + user.getPassword());
+		System.out.println("isAdmin: " + user.getIsAdmin() );
+		
+		
+	}
 	public void manageSchools(){
 		System.out.println("U10 Manage Schools");
 		if(this.adminUI ==null)
@@ -132,8 +189,16 @@ public class TextDriver {
 		}
 		System.out.println();
 	}
+	public void manageSavedSchools(){
+		
+		
+	}
+	
 	public void searchSchools(){}
-	public void logout(){}
+	public void logout(){
+		ui.logOut();
+		System.out.println("Logged Out");
+	}
 	public void managePeople(){
 		if(this.adminUI ==null)
 			System.out.println("not logged in as admin");
@@ -143,11 +208,24 @@ public class TextDriver {
 			for(Person p: people)
 			{
 				System.out.println("firstName: " + p.getFirstName() + " lastname: " + p.getLastName() + " username: " + 
-				 p.getUsername() + " password: " + p.getPassword() + " isAdmin: " + p.getIsAdmin() );
+				 p.getUsername() + " password: " + p.getPassword() + " isAdmin: " + p.getIsAdmin() + " ActiveStatus: " + adminUI.getActiveState(p));
 			}
 		}
 	}
-	public void editProfile(){}
+	public void updateProfile(){
+		System.out.println("U5 Edit Profile");
+		User user = userUI.getUser();
+		String firstName = user.getFirstName();
+		String lastName = user.getLastName() + "Edited";
+		String password = user.getPassword();
+		String type;
+		if (user.getIsAdmin())
+			 type = "a";
+		else
+			 type = "u";
+		userUI.UpdateUser(firstName, lastName,password,type);
+		System.out.println("Profile edited");
+	}
 	public void removeSchool(){}
 	public void viewSchool(){}
 	public void viewSearchResults(){}
@@ -181,7 +259,17 @@ public class TextDriver {
 				50.0, 4, 5, 5);
 		System.out.println("COOLSCHOOL added");
 	}
-	public void editUniversity(){
+	public void updateUniversity(){
+		System.out.println("U26 Edit University" );
+		School school = adminUI.getSchoolByName("COOLSCHOOL");
+		System.out.println(school == null);
+		adminUI.updateSchool(school, school.getName(),school.getState(),school.getLocation(),school.getControl(),
+				school.getNumStudents(),school.getPercentFemale(),school.getSATVerb(),school.getSATMath()*2,school.getExpenses(),
+				school.getPercentFinancialAid(),school.getNumberOfApplicants(),school.getPercentAdmitted(),
+				school.getPercentEnrolled(),school.getAcademicsScale(),school.getSocialScale(),school.getQualityOfLifeScale(), school.getEmphases());
+		
+		
+		System.out.println("COOLSCHOOL's SATMATH doubled");
 	}
 	public void viewSchoolAndRecommendations(){}
 	public void changeActiveStatusPerson(){

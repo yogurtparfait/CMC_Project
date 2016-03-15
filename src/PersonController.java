@@ -41,4 +41,8 @@ public class PersonController {
 	public void assignPerson(Person p){
 		this.thisPerson = p;
 	}
+	public char getActiveState(Person p)
+	{
+		return controller.getActiveState(p);
+	}
 }

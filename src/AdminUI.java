@@ -32,7 +32,7 @@ public class AdminUI extends PersonUI {
 		return this.controller.updatePerson(person, firstName,lastName,password,type);	
 	}
 	public void updateSchool(School s, String name,String state,String location,String control,
-	int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+	int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 	double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 	double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
 		this.controller.updateSchool(s,name,state,location,control,
@@ -42,5 +42,8 @@ public class AdminUI extends PersonUI {
 	}
 	public List<School> getSchools(){
 		return this.controller.getSchools();
+	}
+	public School getSchoolByName(String name){
+		return this.controller.getSchoolByName(name);
 	}
 }

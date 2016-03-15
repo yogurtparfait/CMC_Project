@@ -37,8 +37,8 @@ public class AdminController extends PersonController{
 					database.deactivate(p);
 					return true;
 				}
-				else if(database.getActiveState(p)=='Y'){
-					database.deactivate(p);
+				else if(database.getActiveState(p)=='N'){
+					database.activate(p);
 					return true;
 				}
 				return false;
@@ -50,7 +50,7 @@ public class AdminController extends PersonController{
 			}
 			
 			public void updateSchool(School s, String name,String state,String location,String control,
-			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale,
 			String[] emphases){
@@ -63,5 +63,7 @@ public class AdminController extends PersonController{
 			public List<School> getSchools(){
 				return database.getSchools();
 			}
-
+			public School getSchoolByName(String name){
+				return database.getSchoolByName(name);
+			}
 }

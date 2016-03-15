@@ -157,7 +157,7 @@ public class DBController {
 		}
 	}
 	
-	public boolean activate(User u){
+	public boolean activate(Person u){
 		Person p = this.findByUserName(u.getUsername());
 		int i = library.user_editUser(p.getUsername(),p.getFirstName(),p.getLastName(),p.getPassword()
 				,'u','Y');
@@ -205,7 +205,7 @@ public class DBController {
 	}
 	
 	public boolean updateSchool(School s, String name,String state,String location,String control,
-			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
 		
@@ -215,11 +215,13 @@ public class DBController {
 		
 		if(i==-1) return false;
 		
+		/*
 		for(String e:emphases){
 			int j = library.university_addUniversityEmphasis(name,e);
 			if(j==-1) return false;
+			
 		}
-		
+		*/
 		return true;
 	}	
 	
@@ -315,6 +317,49 @@ public class DBController {
 		return null;
 	}
 
+
+	public School getSchoolByName(String name){
+		String[][] schools = library.university_getUniversities();
+		for(String[] currentSchool:schools){
+			if(currentSchool[0].equals(name))
+				return new School(
+						//Fix all these parameter types
+						//name
+						currentSchool[0],
+						//state
+						currentSchool[1],
+						//location
+						currentSchool[2],
+						//control
+						currentSchool[3],
+						//numberOfStudents
+						Integer.parseInt(currentSchool[4]),
+						//PercentFemale
+						Double.parseDouble(currentSchool[5]),
+						//SATVerbal
+						Double.parseDouble(currentSchool[6]),
+						//SATMath
+						Double.parseDouble(currentSchool[7]),
+						//Expenses
+						Double.parseDouble(currentSchool[8]),
+						//PercentFincancialAid
+						Double.parseDouble(currentSchool[9]),
+						//NumberOfApplicants
+						Integer.parseInt(currentSchool[10]),
+						//PercentAdmitted
+						Double.parseDouble(currentSchool[11]),
+						//PercentEnrolled
+						Double.parseDouble(currentSchool[12]),
+						//AcademicsScale
+						Integer.parseInt(currentSchool[13]),
+						//SocialScale
+						Integer.parseInt(currentSchool[14]),
+						//QualityOfLife
+						Integer.parseInt(currentSchool[15]));
+		}
+		return null;
+		}
+	
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,

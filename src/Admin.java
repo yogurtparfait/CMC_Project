@@ -1,8 +1,22 @@
 
+/** The Admin class just creates an Admin as an object
+ * @author Noah, Megan, Jordan, Yang
+ *
+ */
 public class Admin extends Person{
+	/**
+	 * Default constructer for Admin
+	 */
 	public Admin(){
 		super.setIsAdmin(true);
 	}
+	
+	/** The Admin constructer for Admins.
+	 * @param firstName
+	 * @param lastName
+	 * @param username
+	 * @param password
+	 */
 	public Admin(String firstName, String lastName, String username, String password){
 		super.setIsAdmin(true);
 		super.setFirstName(firstName);

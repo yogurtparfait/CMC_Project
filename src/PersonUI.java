@@ -13,7 +13,11 @@ public class PersonUI {
 		public boolean logOut(){
 			return this.controller.logOut();
 		}
+		public char getActiveState(Person p){
+			return this.controller.getActiveState(p);
+			
 		}
+}
 	
 
 
