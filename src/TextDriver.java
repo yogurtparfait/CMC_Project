@@ -79,7 +79,7 @@ public class TextDriver {
 		System.out.println("Save School");
 		driver.saveSchool();
 		sc.nextLine();
-		System.out.println("Manage Saved Schools");		// not til later cause no schools are saved
+		System.out.println("Manage Saved Schools");		// doesn't currently work cause no schools are saved
 		driver.manageSavedSchools();
 		sc.nextLine();
 		System.out.println("View School");
@@ -180,7 +180,7 @@ public class TextDriver {
 		}
 	}
 	
-	publi void saveSchool(){}
+	public void saveSchool(){}
 	
 	public void manageProfile(){
 		User user = userUI.getUser();
