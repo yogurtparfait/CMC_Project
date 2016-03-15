@@ -231,7 +231,7 @@ public class DBController {
 		else return true;
 	}
 	
-	public List<School> getSavedSchools(){
+	public List<School> getSchools(){
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 			for(String[] currentSchool:schools){
