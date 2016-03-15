@@ -26,22 +26,31 @@ public class DBController {
 	}
 
 	public Person findByUserName(String username){
+		System.out.println("finding by username");
 		String[][] users = library.user_getUsers();
 		for(String[] currentUser:users){
 			if(currentUser[2].equals(username)){
 				if(currentUser[4].charAt(0)=='u'){
 					User returnUser = new User();
+					//System.out.println("firstname: " + currentUser[0]);
 					returnUser.setFirstName(currentUser[0]);
+					//System.out.println("lastname: " + currentUser[1]);
 					returnUser.setLastName(currentUser[1]);
+					//System.out.println("Username: " + currentUser[2]);
 					returnUser.setUsername(currentUser[2]);
+					//System.out.println("Password: " + currentUser[3]);
 					returnUser.setPassword(currentUser[3]);
 					return returnUser;
 				}
 				else{ //isAdmin
 				Admin returnAdmin = new Admin();
+				//System.out.println("firstname: " + currentUser[0]);
 				returnAdmin.setFirstName(currentUser[0]);
+				//System.out.println("lastname: " + currentUser[1]);
 				returnAdmin.setLastName(currentUser[1]);
+				//System.out.println("Username: " + currentUser[2]);
 				returnAdmin.setUsername(currentUser[2]);
+				//System.out.println("Password: " + currentUser[3]);
 				returnAdmin.setPassword(currentUser[3]);
 				return returnAdmin;
 				}				

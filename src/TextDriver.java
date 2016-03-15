@@ -28,7 +28,7 @@ public class TextDriver {
 
 		do 
 			{
-				System.out.println("Pick a use case: /n 1: login /n 3: manage profile /n 5: editProfile /n 0: Quit");
+				System.out.println("Pick a use case: /n 1: login /n 3: manage profile /n 5: editProfile /n 18: addPerson /n 0: Quit");
 				choice = sc.nextInt();
 				if (choice == 1)
 					driver.login();
@@ -38,6 +38,8 @@ public class TextDriver {
 					driver.editProfile();
 				else if (choice == 0)
 					System.out.println("Goodbye");
+				else if (choice == 18)
+					driver.addPerson();
 				else 
 					System.out.println("not valid try a different number");
 			}while( choice != 0);
@@ -86,7 +88,7 @@ public class TextDriver {
 	public void viewSearchResults(){}
 	public void viewPerson(){}
 	public void addPerson(){
-		System.out.println("Enter firstname");
+		/*System.out.println("Enter firstname");
 		String firstName = sc.nextLine();
 		System.out.println("Enter lastname");
 		String lastName = sc.nextLine();
@@ -95,7 +97,14 @@ public class TextDriver {
 		System.out.println("Enter username");
 		String username = sc.nextLine();
 		System.out.println("Enter type");
-		String type = sc.nextLine();
+		String type = sc.nextLine();*/
+		
+		String firstName = "Super";
+		String lastName = "Admin";
+		String password = "password";
+		String username = "SuperAdmin";
+		String type = "a";
+		
 		System.out.println(adminUI.addPerson(firstName,lastName, password, username,type));
 		
 	}
