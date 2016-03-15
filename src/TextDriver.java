@@ -70,7 +70,7 @@ public class TextDriver {
 		System.out.println("Manage Profile to see edit");
 		driver.manageProfile();
 		sc.nextLine();
-		System.out.println("Search Schools");		//	Everything works up to here
+		System.out.println("Search Schools");		
 		driver.searchSchools();
 		sc.nextLine();
 		System.out.println("View School and Reccommedations");
@@ -79,7 +79,7 @@ public class TextDriver {
 		System.out.println("Save School");
 		driver.saveSchool();
 		sc.nextLine();
-		System.out.println("Manage Saved Schools");		// doesn't currently work cause no schools are saved
+		System.out.println("Manage Saved Schools");		
 		driver.manageSavedSchools();
 		sc.nextLine();
 		System.out.println("View School");
