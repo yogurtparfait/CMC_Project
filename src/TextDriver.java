@@ -91,42 +91,7 @@ public class TextDriver {
 		System.out.println("Manage Saved Schools to see deleted");
 		driver.manageSavedSchools();
 		sc.nextLine();
-		
-		
-		
-		
-		
-		
-		/*int choice;								//not using scanner
-		Scanner sc = new Scanner(System.in);
-		
-		TextDriver driver = new TextDriver();
-		driver.setScanner(sc);
-		
-		
-
-		do 
-			{
-				System.out.println("Pick a use case: \n 1: login \n 3: manage profile \n 5: editProfile \n 18: addPerson  ");
-				System.out.println(" 16: Manage People \n 0: Quit");
-				choice = sc.nextInt();
-				if (choice == 1)
-					driver.login();
-				else if(choice == 3)
-					driver.manageProfile();
-				else if(choice == 5)
-					driver.editProfile();
-				else if (choice == 0)
-					System.out.println("Goodbye");
-				else if (choice == 18)
-					driver.addPerson();
-				else if (choice == 16)
-					driver.managePeople();
-				else 
-					System.out.println("not valid try a different number");
-			}while( choice != 0);
-		sc.close();*/
-		
+		System.out.println("End of Demo");
 	}
 	
 	public void login(){
@@ -180,7 +145,13 @@ public class TextDriver {
 		}
 	}
 	
-	public void saveSchool(){}
+	public void saveSchool(){
+		School s1 = userUI.getSchoolByName("COOLSCHOOL");
+		School s2 = userUI.getSchoolByName("COLLEGE OF ST BENEDICT");			//not sure if this is an actual one replace with valid
+		userUI.saveSchool(s1);
+		userUI.saveSchool(s1);
+		System.out.println("Schools Saved: " + s1.getName() + ", " + s2.getName());
+	}
 	
 	public void manageProfile(){
 		User user = userUI.getUser();
@@ -222,7 +193,15 @@ public class TextDriver {
 		System.out.println();
 	}
 	
-	public void searchSchools(){}
+	public void searchSchools(){
+		System.out.println("Searching");
+		List <School> schools = userUI.search("COOLSCHOOL", "MN", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, new String[2]);
+		System.out.println(schools.size() + " schools found");
+		for (School s : schools)
+		{
+			System.out.println(s.getName());
+		}
+	}
 	public void logout(){
 		ui.logOut();
 		System.out.println("Logged Out");
@@ -254,8 +233,17 @@ public class TextDriver {
 		userUI.UpdateUser(firstName, lastName,password,type);
 		System.out.println("Profile edited");
 	}
-	public void removeSchool(){}
-	public void viewSchool(){}
+	public void removeSchool(){
+		School s = userUI.getSchoolByName("COOLSCHOOL");
+		userUI.removeSavedSchool(s);
+		System.out.println("COOLSCHOOL removed from saved schools");
+	}
+	public void viewSchool(){
+		School s = userUI.getSchoolByName("COOLSCHOOL");
+		System.out.println("Viewing " + s.getName());
+		System.out.println("Name: " + s.getName());
+		System.out.println("All the other stuff prints");
+	}
 	public void viewSearchResults(){}
 	
 	public void addPerson(){
@@ -299,7 +287,18 @@ public class TextDriver {
 		
 		System.out.println("COOLSCHOOL's SATMATH doubled");
 	}
-	public void viewSchoolAndRecommendations(){}
+	public void viewSchoolAndRecommendations(){
+		System.out.println("Viewing school and recommendations");
+		School s = userUI.getSchoolByName("COOLSCHOOL");
+		System.out.println("Name: " + s.getName());
+		System.out.println("Prints other fields");
+		List <School> schools = userUI.getRecommendations(s);
+		System.out.println("Reccomennding:");
+		for (School r : schools)
+		{
+			System.out.println(r.getName());
+		}
+	}
 	public void changeActiveStatusPerson(){
 		System.out.println("U20 Deactivate/Activate");
 		Person person = adminUI.getPersonByUsername("SuperAdmin");
