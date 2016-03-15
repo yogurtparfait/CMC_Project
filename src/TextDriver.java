@@ -144,8 +144,16 @@ public class TextDriver {
 		System.out.println(adminUI.addPerson(firstName,lastName, password, username,type));
 		
 	}
-	public void addUniversity(){}
-	public void editUniversity(){}
+	public void addUniversity(){
+		System.out.println("U25 Add University");
+		adminUI.addSchool("COOLSCHOOL","MN","Rural" ,"Private",
+				200, 50.0, 800, 900.5, 50000,
+				50.0, 7000, 50.0,
+				50.0, 4, 5, 5);
+		System.out.println("COOLSCHOOL added");
+	}
+	public void editUniversity(){
+	}
 	public void viewSchoolAndRecommendations(){}
 	public void changeActiveStatusPerson(){
 		System.out.println("U20 Deactivate/Activate");
