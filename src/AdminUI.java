@@ -18,6 +18,10 @@ public class AdminUI extends PersonUI {
 	public List<Person> getPeople(){
 		return this.controller.getPeople();	
 	}
+	public Person getPersonByUsername(String username){
+		return this.controller.getPersonByUsername(username);
+	}
+	
 	public boolean addPerson(String firstName, String lastName, String password, String username, String type){
 		return this.controller.addPerson(firstName,lastName,password,username,type);	
 	}

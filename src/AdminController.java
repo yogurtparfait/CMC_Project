@@ -27,6 +27,11 @@ public class AdminController extends PersonController{
 				return database.addPerson(firstName, lastName, password, username);
 			}
 			
+			public Person getPersonByUsername(String username)
+			{
+				return database.findByUserName(username);
+			}
+			
 			public boolean changeStatus(Person p){
 				if(database.getActiveState(p)=='Y'){ 
 					database.deactivate(p);
