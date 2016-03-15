@@ -67,8 +67,30 @@ public class TextDriver {
 		System.out.println("edit profile: ");
 		driver.updateProfile();
 		sc.nextLine();
-		System.out.println("Manage Saved Schools");
+		System.out.println("Manage Profile to see edit");
+		driver.manageProfile();
+		sc.nextLine();
+		System.out.println("Search Schools");		//	Everything works up to here
+		driver.searchSchools();
+		sc.nextLine();
+		System.out.println("View School and Reccommedations");
+		driver.viewSchoolAndRecommendations();
+		sc.nextLine();
+		System.out.println("Save School");
+		driver.saveSchool();
+		sc.nextLine();
+		System.out.println("Manage Saved Schools");		// not til later cause no schools are saved
 		driver.manageSavedSchools();
+		sc.nextLine();
+		System.out.println("View School");
+		driver.viewSchool();
+		sc.nextLine();
+		System.out.println("Remove School");
+		driver.removeSchool();
+		sc.nextLine();
+		System.out.println("Manage Saved Schools to see deleted");
+		driver.manageSavedSchools();
+		sc.nextLine();
 		
 		
 		
@@ -157,6 +179,8 @@ public class TextDriver {
 			System.out.println("Issssssuuuuue with login");
 		}
 	}
+	
+	publi void saveSchool(){}
 	
 	public void manageProfile(){
 		User user = userUI.getUser();
