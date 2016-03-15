@@ -30,11 +30,11 @@ public class AdminUI extends PersonUI {
 	public void updateSchool(School s, String name,String state,String location,String control,
 	int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 	double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-	double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
+	double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
 		this.controller.updateSchool(s,name,state,location,control,
 				numStudents,percentFemale,SATVerb,SATMath,expenses,
 				percentFinancialAid,numberOfApplicants,percentAdmitted,
-				percentEnrolled,academicsScale,socialScale,qualityOfLifeScale);
+				percentEnrolled,academicsScale,socialScale,qualityOfLifeScale, emphases);
 	}
 	public List<School> getSchools(){
 		return this.controller.getSchools();
