@@ -9,6 +9,7 @@ public class UserController {
 	public UserController(User u) {
 		this.thisUser = u;
 		database = new DBController();
+		search = new SearchController();
 	}
 	
 	public List<School> getSavedSchools(){

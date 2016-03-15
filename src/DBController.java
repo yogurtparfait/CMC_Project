@@ -477,8 +477,8 @@ public class DBController {
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		School[] schoolList = new School[300];
-		double[] searchVector = new double[15];
-		double[] foundVector = new double[15];
+		double[] searchVector = new double[16];
+		double[] foundVector = new double[16];
 		double total = 0;
 		School holder; //placeholder for sorting, total is used for the doubles.
 		int counter = 0;

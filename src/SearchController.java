@@ -3,6 +3,10 @@ import java.util.List;
 public class SearchController {
 
 	private DBController database;
+	public SearchController(){
+		database = new DBController();
+	}
+	
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
