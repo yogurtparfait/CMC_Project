@@ -264,6 +264,48 @@ public class DBController {
 		return returnSchools;
 		}
 		
+	public School getSchoolByName(String name){
+		String[][] schools = library.university_getUniversities();
+		for(String[] currentSchool:schools){
+			if(currentSchool[0]==name)
+				return new School(
+						//Fix all these parameter types
+						//name
+						currentSchool[0],
+						//state
+						currentSchool[1],
+						//location
+						currentSchool[2],
+						//control
+						currentSchool[3],
+						//numberOfStudents
+						Integer.parseInt(currentSchool[4]),
+						//PercentFemale
+						Double.parseDouble(currentSchool[5]),
+						//SATVerbal
+						Double.parseDouble(currentSchool[6]),
+						//SATMath
+						Double.parseDouble(currentSchool[7]),
+						//Expenses
+						Double.parseDouble(currentSchool[8]),
+						//PercentFincancialAid
+						Double.parseDouble(currentSchool[9]),
+						//NumberOfApplicants
+						Integer.parseInt(currentSchool[10]),
+						//PercentAdmitted
+						Double.parseDouble(currentSchool[11]),
+						//PercentEnrolled
+						Double.parseDouble(currentSchool[12]),
+						//AcademicsScale
+						Integer.parseInt(currentSchool[13]),
+						//SocialScale
+						Integer.parseInt(currentSchool[14]),
+						//QualityOfLife
+						Integer.parseInt(currentSchool[15]));
+		}
+		return null;
+		}
+	
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
