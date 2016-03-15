@@ -45,12 +45,18 @@ public class TextDriver {
 	}
 	
 	public void login(){
-		System.out.println("Enter username");
-		String username = sc.nextLine();
-		System.out.println("Enter password");
+		/*System.out.println("Enter username");		//not working correctly
+		String username = sc.nextLine();			//scanner prints both enter username and enter password without 
+		System.out.println("Enter password");		//waiting for the username
 		String password = sc.nextLine();
 		System.out.println("Steal? true or false");
-		boolean steal = sc.nextBoolean();
+		boolean steal = sc.nextBoolean();*/
+		
+		System.out.println("Username: ImadUser");
+		System.out.println("Password: ImadPass ");
+		String username = "ImadUser";
+		String password = "ImadPass";
+		boolean steal = true;
 		System.out.println("logon result");
 		ui = ui.logOn(username, password, steal);
 		if (ui instanceof UserUI)
