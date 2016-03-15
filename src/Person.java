@@ -1,4 +1,8 @@
 
+/**
+ * @author Megan Noah Jordan Yang
+ *
+ */
 public class Person {
 
 	private String firstName; 
@@ -12,12 +16,17 @@ public class Person {
 	
 	
 	
+	/**
+	 * gets password
+	 * @return password of person
+	 */
 	public String getPassword(){
 		return this.password;
 	}
 
 	/**
-	 * @return the firstName
+	 * gets first name
+	 * @return the firstName of a person
 	 */
 	public String getFirstName() {
 		return firstName;
@@ -29,7 +38,7 @@ public class Person {
 		this.firstName = firstName;
 	}
 	/**
-	 * @return the lastName
+	 * @return the lastName of person
 	 */
 	public String getLastName() {
 		return lastName;
@@ -59,10 +68,16 @@ public class Person {
 		this.password = password;
 	}
 	
+	/**
+	 * @param b whether person is an administrator
+	 */
 	public void setIsAdmin(boolean b){
 		this.isAdmin = b;
 	}
 	
+	/**
+	 * @return  isAdmin
+	 */
 	public boolean getIsAdmin(){
 		return this.isAdmin;
 	}

@@ -1,8 +1,16 @@
 
+/**
+ * @author Megan Noah Yang Jordan
+ *
+ */
 public class User extends Person{
 
 	private School[] savedSchools;
 	
+	
+	/**
+	 * creates user and makes sure it is set to not be admin
+	 */
 	public User(){
 		super.setIsAdmin(false);
 	}
