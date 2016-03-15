@@ -1,4 +1,8 @@
 
+/**
+ * @author Megan Noah Jordan Yang
+ *
+ */
 public class School {
 	private String name;
 	private String state;
@@ -17,13 +21,28 @@ public class School {
 	private int socialScale;
 	private int qualityOfLifeScale;
 	private String[] emphases;
-	/**
-	 * @return the name
-	 */
-	/**
-	 * @return the name
-	 */
+
 	public School(){}
+	/**
+	 * Creates school with all given parameters
+	 * @param name
+	 * @param state
+	 * @param location
+	 * @param control
+	 * @param numStudents
+	 * @param percentFemale
+	 * @param SATVerb
+	 * @param SATMath
+	 * @param expenses
+	 * @param percentFinancialAid
+	 * @param numberOfApplicants
+	 * @param percentAdmitted
+	 * @param percentEnrolled
+	 * @param academicsScale
+	 * @param socialScale
+	 * @param qualityOfLifeScale
+	 * @param emphases
+	 */
 	public School(String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
@@ -47,6 +66,25 @@ public class School {
 		this.qualityOfLifeScale = qualityOfLifeScale;
 		this.emphases = emphases;
 	}
+	/**
+	 * Creates school with given parameters
+	 * @param name
+	 * @param state
+	 * @param location
+	 * @param control
+	 * @param numStudents
+	 * @param percentFemale
+	 * @param SATVerb
+	 * @param SATMath
+	 * @param expenses
+	 * @param percentFinancialAid
+	 * @param numberOfApplicants
+	 * @param percentAdmitted
+	 * @param percentEnrolled
+	 * @param academicsScale
+	 * @param socialScale
+	 * @param qualityOfLifeScale
+	 */
 	public School(String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
@@ -68,6 +106,9 @@ public class School {
 		this.socialScale = socialScale;
 		this.qualityOfLifeScale = qualityOfLifeScale;
 	}
+	/**
+	 * @return name of school
+	 */
 	public String getName() {
 		return name;
 	}
