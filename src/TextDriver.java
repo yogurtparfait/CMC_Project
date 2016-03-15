@@ -19,7 +19,35 @@ public class TextDriver {
 	}
 	
 	public static void main(String[] args) {
-		int choice;
+		TextDriver driver = new TextDriver();		
+		System.out.println("Logging in as ImadUser");
+		driver.login();
+		System.out.println("Manage People");
+		driver.managePeople();
+		System.out.println("Add Person");
+		driver.addPerson();
+		System.out.println("Edit Person");
+		driver.updatePerson();
+		System.out.println("Deactivate/Activate Person");
+		driver.changeActiveStatusPerson();
+		System.out.println("Manage People");
+		driver.managePeople();
+		System.out.println();
+		System.out.println("Manage Universities");
+		driver.manageSchools();
+		System.out.println("Add University");
+		driver.addUniversity();
+		System.out.println("Edit University");
+		driver.editUniversity();
+		System.out.println("Manage Universities");
+		driver.manageSchools();
+		System.out.println();
+		System.out.println("Logging out ImadUser");
+		
+		
+		
+		
+		/*int choice;								//not using scanner
 		Scanner sc = new Scanner(System.in);
 		
 		TextDriver driver = new TextDriver();
@@ -47,7 +75,8 @@ public class TextDriver {
 				else 
 					System.out.println("not valid try a different number");
 			}while( choice != 0);
-		sc.close();
+		sc.close();*/
+		
 	}
 	
 	public void login(){
