@@ -6,6 +6,7 @@ public class AdminController extends PersonController{
 	private DBController database;
 	public AdminController(Admin a) {
 		this.thisAdmin = a;
+		database = new DBController();
 	}
 	public boolean addSchool(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
