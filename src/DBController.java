@@ -1,23 +1,39 @@
 import java.util.ArrayList;
 import java.util.List;
 import dblibrary.project.csci230.*;
-public class DBController {
-	
-	
+
+/**
+ * Controller for the Database, that includes all of the functionalities.
+ * @author Noah, Megan, Jordan, Yang
+ */
+public class DBController { 
 	
 	
 	private UniversityDBLibrary library;
 	
+	/**
+	 *  Constructor for the DBController.
+	 */
 	public DBController() {
 		this.library = new UniversityDBLibrary("yogurtparf","yogurtparf","jmny4");
 	}
 	
+	/** unsaves the school of the user.
+	 * @param u
+	 * @param s
+	 * @return
+	 */
 	public boolean unSaveSchool(User u, School s){
 		int i = library.user_removeSchool(u.getUsername(),s.getName());
 		if(i==-1) return false;
 		return true;
 	}
 	
+	/** Adds a school to the library
+	 * @param u user
+	 * @param s school
+	 * @return
+	 */
 	public boolean addSavedSchool(User u, School s){
 		int i = library.user_saveSchool(u.getUsername(),s.getName());
 		if(i==-1) return false;
@@ -25,6 +41,10 @@ public class DBController {
 
 	}
 
+	/** Finds a person by their username.
+	 * @param username
+	 * @return
+	 */
 	public Person findByUserName(String username){
 		System.out.println("finding by username");
 		String[][] users = library.user_getUsers();
@@ -60,6 +80,25 @@ public class DBController {
 		}
 	
 	
+	/** Creates a school.
+	 * @param name 
+	 * @param state 
+	 * @param location
+	 * @param control
+	 * @param numStudents
+	 * @param percentFemale 
+	 * @param SATVerb
+	 * @param SATMath
+	 * @param expenses
+	 * @param percentFinancialAid
+	 * @param numberOfApplicants
+	 * @param percentAdmitted
+	 * @param percentEnrolled
+	 * @param academicsScale
+	 * @param socialScale
+	 * @param qualityOfLifeScale
+	 * @return
+	 */
 	public boolean createSchool(String name,String state,String location,String control,
 			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
@@ -73,6 +112,10 @@ public class DBController {
 		
 	}
 	
+	/** Returns a list of the user schools.
+	 * @param u User
+	 * @return
+	 */
 	public List<School> getUserSchools(User u){
 		String[][] userSchools = library.user_getUsernamesWithSavedSchools();
 		System.out.println(userSchools ==null);
@@ -124,6 +167,9 @@ public class DBController {
 		return returnSchools;	
 	}
 	
+	/** Retruns list of persons that are users.
+	 * @return 
+	 */
 	public List<Person> getPeople(){
 		String[][] users = library.user_getUsers();
 		List<Person> returnPersons = new ArrayList<Person>();
@@ -148,6 +194,13 @@ public class DBController {
 		return returnPersons;
 	}
 
+	/** Adds a person to the user library. 
+	 * @param firstName First name of person
+	 * @param lastName Last name of person
+	 * @param password Password of person
+	 * @param username username of person
+	 * @return
+	 */
 	public boolean addPerson(String firstName, String lastName, String password, String username){
 		Person p = this.findByUserName(username);
 		if(!(p==null)) return false;
@@ -158,6 +211,11 @@ public class DBController {
 		}
 	}
 	
+	/**
+	 *  Checks to see if the persons account is active.
+	 * @param u Person 
+	 * @return
+	 */
 	public boolean activate(Person u){
 		Person p = this.findByUserName(u.getUsername());
 		int i = library.user_editUser(p.getUsername(),p.getFirstName(),p.getLastName(),p.getPassword()
@@ -168,6 +226,10 @@ public class DBController {
 	}
 	
 	//True if active
+	/** Gets the active state of the person
+	 * @param p
+	 * @return
+	 */
 	public char getActiveState(Person p){
 		String[][] persons = library.user_getUsers();
 		for(String[] personInfo:persons){
@@ -175,10 +237,17 @@ public class DBController {
 				return personInfo[5].charAt(0);
 			}
 		}
-		return 'e'; //Person not found. Make sure to catch.
+		return 'e'; //Person not found. Make sure to catch. ERROR
 	}
 	
 	//Should this update person in general? Can an admin update an admin?
+	/** Updates the person info
+	 * @param person
+	 * @param firstName
+	 * @param lastName
+	 * @param password
+	 * @return
+	 */
 	public boolean updatePerson(Person person,String firstName, String lastName, String password){
 		int i = -1;
 		if(person.getIsAdmin()){
@@ -194,17 +263,46 @@ public class DBController {
 	}
 	
 	//for steal
+	/** Logouts the person.
+	 * @param p
+	 * @return
+	 */
 	public boolean logOut(Person p){
 	//TODO
 		return true;
 	}
 	
 	//for steal
+	/** Logs in the person and checks if availabale to steal. 
+	 * @param p
+	 * @return
+	 */
 	public boolean logInPerson(Person p){
-		//TODO
+		//TODO Has to do stealing. 
 		return true;
 	}
 	
+	/** Updates the school.
+	 * @param s
+	 * @param name
+	 * @param state
+	 * @param location
+	 * @param control
+	 * @param numStudents
+	 * @param percentFemale
+	 * @param SATVerb
+	 * @param SATMath
+	 * @param expenses
+	 * @param percentFinancialAid
+	 * @param numberOfApplicants
+	 * @param percentAdmitted
+	 * @param percentEnrolled
+	 * @param academicsScale
+	 * @param socialScale
+	 * @param qualityOfLifeScale
+	 * @param emphases
+	 * @return
+	 */
 	public boolean updateSchool(School s, String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
@@ -226,6 +324,10 @@ public class DBController {
 		return true;
 	}	
 	
+	/** Deactivates a person.
+	 * @param p
+	 * @return
+	 */
 	public boolean deactivate(Person p){
 		Person h = this.findByUserName(p.getUsername());
 		int i = library.user_editUser(h.getUsername(),h.getFirstName(),h.getLastName(),h.getPassword()
@@ -234,6 +336,9 @@ public class DBController {
 		else return true;
 	}
 	
+	/** Returns a list of schools 
+	 * @return
+	 */
 	public List<School> getSchools(){
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
@@ -276,6 +381,10 @@ public class DBController {
 		return returnSchools;
 		}
 		
+	/** Searchs for a school by name.
+	 * @param name
+	 * @return
+	 */
 	public School findBySchoolName(String name){
 		String[][] schools = library.university_getUniversities();
 		for(String[] currentSchool:schools){
@@ -319,6 +428,10 @@ public class DBController {
 	}
 
 
+	/** Searchs for a school by name. 
+	 * @param name
+	 * @return
+	 */
 	public School getSchoolByName(String name){
 		String[][] schools = library.university_getUniversities();
 		for(String[] currentSchool:schools){
@@ -361,6 +474,26 @@ public class DBController {
 		return null;
 		}
 	
+	/** Search method. 
+	 * @param name
+	 * @param state
+	 * @param location
+	 * @param control
+	 * @param numStudents
+	 * @param percentFemale
+	 * @param SATVerb
+	 * @param SATMath
+	 * @param expenses
+	 * @param percentFinancialAid
+	 * @param numberOfApplicants
+	 * @param percentAdmitted
+	 * @param percentEnrolled
+	 * @param academicsScale
+	 * @param socialScale
+	 * @param qualityOfLifeScale
+	 * @param emphases
+	 * @return
+	 */
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
@@ -473,6 +606,10 @@ public class DBController {
 
 	
 	
+	/** Returns a list of schools(recommended)
+	 * @param s
+	 * @return
+	 */
 	public List<School> recommendations(School s){
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
