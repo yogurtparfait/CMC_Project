@@ -147,9 +147,9 @@ public class TextDriver {
 	
 	public void saveSchool(){
 		School s1 = userUI.getSchoolByName("COOLSCHOOL");
-		School s2 = userUI.getSchoolByName("COLLEGE OF ST BENEDICT");			//not sure if this is an actual one replace with valid
+		School s2 = userUI.getSchoolByName("ARIZONA STATE");	
 		userUI.saveSchool(s1);
-		userUI.saveSchool(s1);
+		userUI.saveSchool(s2);
 		System.out.println("Schools Saved: " + s1.getName() + ", " + s2.getName());
 	}
 	
@@ -292,12 +292,12 @@ public class TextDriver {
 		School s = userUI.getSchoolByName("COOLSCHOOL");
 		System.out.println("Name: " + s.getName());
 		System.out.println("Prints other fields");
-		List <School> schools = userUI.getRecommendations(s);
-		System.out.println("Reccomennding:");
-		for (School r : schools)
-		{
-			System.out.println(r.getName());
-		}
+		//List <School> schools = userUI.getRecommendations(s);
+		//System.out.println("Reccomennding:");
+		//for (School r : schools)
+		//{
+		//	System.out.println(r.getName());
+		//}
 	}
 	public void changeActiveStatusPerson(){
 		System.out.println("U20 Deactivate/Activate");

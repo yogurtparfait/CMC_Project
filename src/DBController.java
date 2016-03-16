@@ -563,7 +563,7 @@ public class DBController {
 											//QualityOfLife
 											Integer.parseInt(currentSchool[15])));
 		
-								}
+			}
 			//Found vector now has distances for each school.
 			//to find the closest five:
 			
