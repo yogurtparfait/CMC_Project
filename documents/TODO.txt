@@ -1,0 +1,16 @@
+Things to do 3/16/16
+
+Javadoc everything
+Sort out issues with search and recommendations
+fix person.isActive to be a field instead of weird UI method
+Update class diagram
+Maybe go through communication diagrams
+
+We want string inputs for search; ui will convert to numbers when applicable
+
+
+
+Phase III
+	divide testing
+	
+

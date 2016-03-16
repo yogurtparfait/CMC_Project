@@ -501,7 +501,7 @@ public class DBController {
 			String[] emphases){
 	
 		String[][] currentEmphases;
-		boolean emphasesEqual = false;
+		boolean emphasesEqual = true;
 		boolean emphasisFound = false;
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
@@ -513,7 +513,7 @@ public class DBController {
 				//Checks Emphases
 				for(String t:emphases){
 					for(String[] s:currentEmphases){
-						if((s[0]==name)&&(s[1]==t)){
+						if((s[0].equals(name))&&(s[1].equals(t))){
 							emphasisFound = true;
 						}	
 					}
@@ -524,15 +524,16 @@ public class DBController {
 					}
 				}
 				
+				
 				if(
 							//name
-							(currentSchool[0]== name || name==null) &&
+							(currentSchool[0].equals(name) || name.equals("")) &&
 							//state
-							(currentSchool[1]== state || state==null) &&
+							(currentSchool[1].equals(state) || state.equals("")) &&
 							//location
-							(currentSchool[2]== location || location==null) &&
+							(currentSchool[2].equals(location) || location.equals("")) &&
 							//control
-							(currentSchool[3]== control || control==null) &&
+							(currentSchool[3].equals(control) || control.equals("")) &&
 							//numberOfStudents
 							(Integer.parseInt(currentSchool[4])== numStudents || numStudents==-1) &&
 							//PercentFemale
@@ -615,7 +616,7 @@ public class DBController {
 		List<School> returnSchools = new ArrayList<School>();
 		School[] schoolList = new School[300];
 		double[] searchVector = new double[16];
-		double[] foundVector = new double[16];
+		double[] foundVector = new double[180];
 		double total = 0;
 		School holder; //placeholder for sorting, total is used for the doubles.
 		int counter = 0;
@@ -700,11 +701,11 @@ public class DBController {
 											//QualityOfLife
 											Integer.parseInt(currentSchool[15])));
 		
-								}
+			}
 			//Found vector now has distances for each school.
 			//to find the closest five:
 			
-			for(int i = 0;i<foundVector.length;i++){
+			for(int i = 0;i<foundVector.length-1;i++){
 				for(int j = 0;j<foundVector.length;j++){
 					if(foundVector[i]>foundVector[i+1]){
 						total = foundVector[i+1];
