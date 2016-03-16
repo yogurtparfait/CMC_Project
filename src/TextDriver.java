@@ -147,9 +147,9 @@ public class TextDriver {
 	
 	public void saveSchool(){
 		School s1 = userUI.getSchoolByName("COOLSCHOOL");
-		School s2 = userUI.getSchoolByName("COLLEGE OF ST BENEDICT");			//not sure if this is an actual one replace with valid
+		School s2 = userUI.getSchoolByName("WORCESTER");			//not sure if this is an actual one replace with valid
 		userUI.saveSchool(s1);
-		userUI.saveSchool(s1);
+		userUI.saveSchool(s2);
 		System.out.println("Schools Saved: " + s1.getName() + ", " + s2.getName());
 	}
 	
@@ -195,7 +195,7 @@ public class TextDriver {
 	
 	public void searchSchools(){
 		System.out.println("Searching");
-		List <School> schools = userUI.search("COOLSCHOOL", "MN", "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, new String[2]);
+		List <School> schools = userUI.search("COOLSCHOOL", "MN", "", "", -1,-1, -1, -1, -1, -1, -1,-1,-1,-1, -1,-1, new String[0]);
 		System.out.println(schools.size() + " schools found");
 		for (School s : schools)
 		{
@@ -247,7 +247,8 @@ public class TextDriver {
 	public void viewSearchResults(){}
 	
 	public void addPerson(){
-		/*System.out.println("Enter firstname");
+		/*
+		System.out.println("Enter firstname");
 		String firstName = sc.nextLine();
 		System.out.println("Enter lastname");
 		String lastName = sc.nextLine();
@@ -256,7 +257,8 @@ public class TextDriver {
 		System.out.println("Enter username");
 		String username = sc.nextLine();
 		System.out.println("Enter type");
-		String type = sc.nextLine();*/
+		String type = sc.nextLine();
+		*/
 		
 		String firstName = "Super";
 		String lastName = "Admin";
@@ -288,6 +290,7 @@ public class TextDriver {
 		System.out.println("COOLSCHOOL's SATMATH doubled");
 	}
 	public void viewSchoolAndRecommendations(){
+		
 		System.out.println("Viewing school and recommendations");
 		School s = userUI.getSchoolByName("COOLSCHOOL");
 		System.out.println("Name: " + s.getName());
@@ -298,6 +301,7 @@ public class TextDriver {
 		{
 			System.out.println(r.getName());
 		}
+		
 	}
 	public void changeActiveStatusPerson(){
 		System.out.println("U20 Deactivate/Activate");
