@@ -26,22 +26,31 @@ public class DBController {
 	}
 
 	public Person findByUserName(String username){
+		System.out.println("finding by username");
 		String[][] users = library.user_getUsers();
 		for(String[] currentUser:users){
 			if(currentUser[2].equals(username)){
 				if(currentUser[4].charAt(0)=='u'){
 					User returnUser = new User();
+					//System.out.println("firstname: " + currentUser[0]);
 					returnUser.setFirstName(currentUser[0]);
+					//System.out.println("lastname: " + currentUser[1]);
 					returnUser.setLastName(currentUser[1]);
+					//System.out.println("Username: " + currentUser[2]);
 					returnUser.setUsername(currentUser[2]);
+					//System.out.println("Password: " + currentUser[3]);
 					returnUser.setPassword(currentUser[3]);
 					return returnUser;
 				}
 				else{ //isAdmin
 				Admin returnAdmin = new Admin();
+				//System.out.println("firstname: " + currentUser[0]);
 				returnAdmin.setFirstName(currentUser[0]);
+				//System.out.println("lastname: " + currentUser[1]);
 				returnAdmin.setLastName(currentUser[1]);
+				//System.out.println("Username: " + currentUser[2]);
 				returnAdmin.setUsername(currentUser[2]);
+				//System.out.println("Password: " + currentUser[3]);
 				returnAdmin.setPassword(currentUser[3]);
 				return returnAdmin;
 				}				
@@ -66,6 +75,7 @@ public class DBController {
 	
 	public List<School> getUserSchools(User u){
 		String[][] userSchools = library.user_getUsernamesWithSavedSchools();
+		System.out.println(userSchools ==null);
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		for(String[] currentUsername:userSchools){
@@ -148,7 +158,7 @@ public class DBController {
 		}
 	}
 	
-	public boolean activate(User u){
+	public boolean activate(Person u){
 		Person p = this.findByUserName(u.getUsername());
 		int i = library.user_editUser(p.getUsername(),p.getFirstName(),p.getLastName(),p.getPassword()
 				,'u','Y');
@@ -196,7 +206,7 @@ public class DBController {
 	}
 	
 	public boolean updateSchool(School s, String name,String state,String location,String control,
-			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
 		
@@ -206,11 +216,13 @@ public class DBController {
 		
 		if(i==-1) return false;
 		
+		/*
 		for(String e:emphases){
-		int j = library.university_addUniversityEmphasis(name,e);
-		if(j==-1) return false;
+			int j = library.university_addUniversityEmphasis(name,e);
+			if(j==-1) return false;
+			
 		}
-		
+		*/
 		return true;
 	}	
 	
@@ -222,7 +234,7 @@ public class DBController {
 		else return true;
 	}
 	
-	public List<School> getSavedSchools(){
+	public List<School> getSchools(){
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 			for(String[] currentSchool:schools){
@@ -264,6 +276,91 @@ public class DBController {
 		return returnSchools;
 		}
 		
+	public School findBySchoolName(String name){
+		String[][] schools = library.university_getUniversities();
+		for(String[] currentSchool:schools){
+		if(currentSchool[0]==name) 
+			return new School(
+					//name
+					currentSchool[0],
+					//state
+					currentSchool[1],
+					//location
+					currentSchool[2],
+					//control
+					currentSchool[3],
+					//numberOfStudents
+					Integer.parseInt(currentSchool[4]),
+					//PercentFemale
+					Double.parseDouble(currentSchool[5]),
+					//SATVerbal
+					Double.parseDouble(currentSchool[6]),
+					//SATMath
+					Double.parseDouble(currentSchool[7]),
+					//Expenses
+					Double.parseDouble(currentSchool[8]),
+					//PercentFincancialAid
+					Double.parseDouble(currentSchool[9]),
+					//NumberOfApplicants
+					Integer.parseInt(currentSchool[10]),
+					//PercentAdmitted
+					Double.parseDouble(currentSchool[11]),
+					//PercentEnrolled
+					Double.parseDouble(currentSchool[12]),
+					//AcademicsScale
+					Integer.parseInt(currentSchool[13]),
+					//SocialScale
+					Integer.parseInt(currentSchool[14]),
+					//QualityOfLife
+					Integer.parseInt(currentSchool[15]));
+			
+		}
+		return null;
+	}
+
+
+	public School getSchoolByName(String name){
+		String[][] schools = library.university_getUniversities();
+		for(String[] currentSchool:schools){
+			if(currentSchool[0].equals(name))
+				return new School(
+						//Fix all these parameter types
+						//name
+						currentSchool[0],
+						//state
+						currentSchool[1],
+						//location
+						currentSchool[2],
+						//control
+						currentSchool[3],
+						//numberOfStudents
+						Integer.parseInt(currentSchool[4]),
+						//PercentFemale
+						Double.parseDouble(currentSchool[5]),
+						//SATVerbal
+						Double.parseDouble(currentSchool[6]),
+						//SATMath
+						Double.parseDouble(currentSchool[7]),
+						//Expenses
+						Double.parseDouble(currentSchool[8]),
+						//PercentFincancialAid
+						Double.parseDouble(currentSchool[9]),
+						//NumberOfApplicants
+						Integer.parseInt(currentSchool[10]),
+						//PercentAdmitted
+						Double.parseDouble(currentSchool[11]),
+						//PercentEnrolled
+						Double.parseDouble(currentSchool[12]),
+						//AcademicsScale
+						Integer.parseInt(currentSchool[13]),
+						//SocialScale
+						Integer.parseInt(currentSchool[14]),
+						//QualityOfLife
+						Integer.parseInt(currentSchool[15]));
+		}
+		return null;
+		}
+	
 	public List<School> search(String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
@@ -281,13 +378,16 @@ public class DBController {
 				currentEmphases = library.university_getNamesWithEmphases();
 				
 				//Checks Emphases
-				for(String[] s:currentEmphases){
-					if(s[0]==name){
-						for(String t:emphases){
-							if(s[1]==t) emphasisFound = true;
-						}
-						if(emphasisFound) emphasesEqual = true;
-						else emphasesEqual = false;
+				for(String t:emphases){
+					for(String[] s:currentEmphases){
+						if((s[0]==name)&&(s[1]==t)){
+							emphasisFound = true;
+						}	
+					}
+					if(emphasisFound) emphasesEqual = true;
+					else{
+						emphasesEqual = false;
+						break;
 					}
 				}
 				
@@ -377,8 +477,8 @@ public class DBController {
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		School[] schoolList = new School[300];
-		double[] searchVector = new double[15];
-		double[] foundVector = new double[15];
+		double[] searchVector = new double[16];
+		double[] foundVector = new double[16];
 		double total = 0;
 		School holder; //placeholder for sorting, total is used for the doubles.
 		int counter = 0;
@@ -463,7 +563,7 @@ public class DBController {
 											//QualityOfLife
 											Integer.parseInt(currentSchool[15])));
 		
-								}
+			}
 			//Found vector now has distances for each school.
 			//to find the closest five:
 			
@@ -485,6 +585,7 @@ public class DBController {
 			for(int i = 0;i<5;i++){
 				returnSchools.add(schoolList[i]);
 			}
+			
 			return returnSchools;
 			
 			}
