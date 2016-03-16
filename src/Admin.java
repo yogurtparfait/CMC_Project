@@ -5,13 +5,13 @@
  */
 public class Admin extends Person{
 	/**
-	 * Default constructer for Admin
+	 * Default constructor for Admin
 	 */
 	public Admin(){
 		super.setIsAdmin(true);
 	}
 	
-	/** The Admin constructer for Admins.
+	/** The Admin constructor for Admins.
 	 * @param firstName
 	 * @param lastName
 	 * @param username
