@@ -565,25 +565,95 @@ public class DBController {
 											Integer.parseInt(currentSchool[15])));
 		
 			}
+			
+		
 			//Found vector now has distances for each school.
 			//to find the closest five:
-			
+	
 			for(int i = 0;i<foundVector.length-1;i++){
 				for(int j = 0;j<foundVector.length;j++){
-					if(foundVector[i]>foundVector[i+1]){
-						total = foundVector[i+1];
-						holder = schoolList[i+1];
-						foundVector[i+1] = foundVector[i];
-						schoolList[i+1] = schoolList[i];
-						foundVector[i] = foundVector[i+1];
-						schoolList[i+1] = schoolList[i];
-					}
-					}
-			}
-			
+					if(foundVector[i]<foundVector[0]){
+						total = foundVector[0];
+						holder = schoolList[0];
+						foundVector[0] = foundVector[i];
+						schoolList[0] = schoolList[i];
+						foundVector[i] = foundVector[5];
+						schoolList[i] = schoolList[5];
+						foundVector[5] = foundVector[4];
+						schoolList[5] = schoolList[4];
+						foundVector[4] = foundVector[3];
+						schoolList[4] = schoolList[3];
+						foundVector[3] = foundVector[2];
+						schoolList[3] = schoolList[2];
+						foundVector[2] = foundVector[1];
+						schoolList[2] = schoolList[1];
+						foundVector[1] = total;
+						schoolList[1] = holder;
+						}
+					else if(foundVector[i]<foundVector[1]){
+						total = foundVector[1];
+						holder = schoolList[1];
+						foundVector[1] = foundVector[i];
+						schoolList[1] = schoolList[i];
+						foundVector[i] = foundVector[5];
+						schoolList[i] = schoolList[5];
+						foundVector[5] = foundVector[4];
+						schoolList[5] = schoolList[4];
+						foundVector[4] = foundVector[3];
+						schoolList[4] = schoolList[3];
+						foundVector[3] = foundVector[2];
+						schoolList[3] = schoolList[2];
+						foundVector[2] = total;
+						schoolList[2] = holder;
+						}
+					else if(foundVector[i]<foundVector[2]){
+						total = foundVector[2];
+						holder = schoolList[2];
+						foundVector[2] = foundVector[i];
+						schoolList[2] = schoolList[i];
+						foundVector[i] = foundVector[5];
+						schoolList[i] = schoolList[5];
+						foundVector[5] = foundVector[4];
+						schoolList[5] = schoolList[4];
+						foundVector[4] = foundVector[3];
+						schoolList[4] = schoolList[3];
+						foundVector[3] = total;
+						schoolList[3] = holder;
+						}
+					else if(foundVector[i]<foundVector[3]){
+						total = foundVector[3];
+						holder = schoolList[3];
+						foundVector[3] = foundVector[i];
+						schoolList[3] = schoolList[i];
+						foundVector[i] = foundVector[5];
+						schoolList[i] = schoolList[5];
+						foundVector[5] = foundVector[4];
+						schoolList[5] = schoolList[4];
+						foundVector[4] = total;
+						schoolList[4] = holder;
+						}
+					else if(foundVector[i]<foundVector[4]){
+						total = foundVector[4];
+						holder = schoolList[4];
+						foundVector[4] = foundVector[i];
+						schoolList[4] = schoolList[i];
+						foundVector[i] = foundVector[5];
+						schoolList[i] = schoolList[5];
+						foundVector[5] = total;
+						schoolList[5] = holder;
+						}
+					else if(foundVector[i]<foundVector[5]){
+						total = foundVector[5];
+						holder = schoolList[5];
+						foundVector[5] = foundVector[i];
+						schoolList[5] = schoolList[i];
+						foundVector[i] = total;
+						schoolList[i] = holder;
+						}
+			}}
 			//schoolList is now sorted shortest to longest.
-			
-			for(int i = 0;i<5;i++){
+			//doesn't return school at spot 1, since the closest school is always itself.
+			for(int i = 1;i<6;i++){
 				returnSchools.add(schoolList[i]);
 			}
 			
