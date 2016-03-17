@@ -4,18 +4,6 @@ import java.util.List;
  * @author Yang, Megan, Jordan, Noah
  *
  */
-/**
- * @author diagonalley
- *
- */
-/**
- * @author diagonalley
- *
- */
-/**
- * @author diagonalley
- *
- */
 public class AdminController extends PersonController{
 	
 	private Admin thisAdmin;

@@ -148,6 +148,7 @@ public class TextDriver {
 	public void saveSchool(){
 		School s1 = userUI.getSchoolByName("COOLSCHOOL");
 		School s2 = userUI.getSchoolByName("WORCESTER");				
+		 s2 = userUI.getSchoolByName("ARIZONA STATE");	
 		userUI.saveSchool(s1);
 		userUI.saveSchool(s2);
 		System.out.println("Schools Saved: " + s1.getName() + ", " + s2.getName());
@@ -295,6 +296,9 @@ public class TextDriver {
 		School s = userUI.getSchoolByName("WORCESTER");
 		System.out.println("Name: " + s.getName());
 		System.out.println("Prints other fields");
+
+
+
 		List <School> schools = userUI.getRecommendations(s);
 		System.out.println("Reccomennding:");
 		for (School r : schools)
@@ -303,12 +307,14 @@ public class TextDriver {
 		}
 	}
 		
+
 		//List <School> schools = userUI.getRecommendations(s);
 		//System.out.println("Reccomennding:");
 		//for (School r : schools)
 		//{
 		//	System.out.println(r.getName());
 		//}
+
 	public void changeActiveStatusPerson(){
 		System.out.println("U20 Deactivate/Activate");
 		Person person = adminUI.getPersonByUsername("SuperAdmin");
