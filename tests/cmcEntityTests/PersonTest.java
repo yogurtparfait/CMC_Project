@@ -16,7 +16,8 @@ import static org.junit.Assert.*;
 		
 		@Test
 		public void testCreatePerson() {
-			assertTrue("Person p is not null", p!==null);
+			Person p = new Person();
+			assertTrue("Person p is not null", !(p == null));
 		}
 
 	}
