@@ -11,12 +11,19 @@ import static org.junit.Assert.*;
 
 		@Before
 		public void setUp() throws Exception {
-			School s = new School();
+			
+
+			School s = new School("name","state","location","control",
+					1,.5,.5,.5,.5,
+					.5,1,.5,
+					.5,1,1,1
+					);
 		}
 		
 		@Test
 		public void test() {
 			//TODO
+			//assertTrue("Person",p==what)
 		}
 
 	}
