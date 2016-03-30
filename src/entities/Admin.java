@@ -1,8 +1,10 @@
+package entities;
 
 /** The Admin class just creates an Admin as an object
  * @author Noah, Megan, Jordan, Yang
  *
  */
+
 
 public class Admin extends Person{
 	/**
