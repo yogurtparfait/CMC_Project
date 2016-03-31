@@ -15,6 +15,12 @@ public class AdminTest {
 	}
 	
 	@Test
+	public void testCreateAdmin() {
+		Admin a = new Admin();
+		assertTrue("Admin a is not null", !(p == null));
+	}
+	
+	@Test
 	public void testSetters() {
 		//TODO
 		Admin a= new Admin("first name","last name","username","password");
@@ -29,5 +35,6 @@ public class AdminTest {
 		assertTrue("username works", a.getUsername().equals("username1"));
 		assertTrue("password works", a.getPassword().equals("password1"));
 	}
+
 
 }
