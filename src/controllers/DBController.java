@@ -1,11 +1,17 @@
+package controllers;
 import java.util.ArrayList;
 import java.util.List;
 import dblibrary.project.csci230.*;
-
+import entities.*;
+import interfaces.*;
 /**
  * Controller for the Database, that includes all of the functionalities.
  * @author Noah, Megan, Jordan, Yang
  */
+
+
+
+
 public class DBController { 
 	
 	
