@@ -17,7 +17,7 @@ public class AdminTest {
 	@Test
 	public void testCreateAdmin() {
 		Admin a = new Admin();
-		assertTrue("Admin a is not null", !(p == null));
+		assertTrue("Admin a is not null", !(a == null));
 	}
 	
 	@Test

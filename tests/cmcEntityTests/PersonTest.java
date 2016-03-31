@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 
 		@Test
 		public void testGetters(){
-			Person p= new Person("first name","last name","username","password",isAdmin);
+			Person p= new Person("first name","last name","username","password");
 			
 			assertTrue("first name works", p.getFirstName().equals("first name"));
 			assertTrue("last name works", p.getLastName().equals("last name"));
@@ -34,7 +34,7 @@ import static org.junit.Assert.*;
 		
 		@Test 
 		public void testSetters(){
-			Person p = new Person("first name","last name","username","password",isAdmin);
+			Person p = new Person("first name","last name","username","password");
 			
 			p.setFirstName("fname");
 			p.setLastName("lname");
