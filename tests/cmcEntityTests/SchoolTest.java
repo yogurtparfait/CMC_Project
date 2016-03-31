@@ -7,6 +7,9 @@ import static org.junit.Assert.*;
 	import org.junit.Before;
 	import org.junit.Test;
 
+import controllers.DBController;
+
+
 	public class SchoolTest {
 		private School s;
 

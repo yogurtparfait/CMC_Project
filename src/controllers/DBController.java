@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import dblibrary.project.csci230.*;
 import entities.*;
-import interfaces.*;
+
 /**
  * Controller for the Database, that includes all of the functionalities.
  * @author Noah, Megan, Jordan, Yang
@@ -93,7 +93,7 @@ public class DBController {
 	 * @param control
 	 * @param numStudents
 	 * @param percentFemale 
-	 * @param SATVerb
+	 * @param d
 	 * @param SATMath
 	 * @param expenses
 	 * @param percentFinancialAid
@@ -106,7 +106,7 @@ public class DBController {
 	 * @return
 	 */
 	public boolean createSchool(String name,String state,String location,String control,
-			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
 		
@@ -132,7 +132,6 @@ public class DBController {
 			for(String[] currentSchool:schools){
 				if(currentUsername[1].equals(currentSchool[0])){
 					returnSchools.add(new School(
-							//Fix all these parameter types
 							//name
 							currentSchool[0],
 							//state
