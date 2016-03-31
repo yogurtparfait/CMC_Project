@@ -9,10 +9,11 @@ import static org.junit.Assert.*;
 	import org.junit.Test;
 
 	public class PersonControllerTest {
-
+		PersonController controller;
+		
 		@Before
 		public void setUp() throws Exception {
-			PersonController controller = new PersonController();
+			controller = new PersonController();
 		}
 		
 		@Test
