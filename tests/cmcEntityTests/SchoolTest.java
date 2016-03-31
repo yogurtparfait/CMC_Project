@@ -8,12 +8,13 @@ import static org.junit.Assert.*;
 	import org.junit.Test;
 
 	public class SchoolTest {
+		private School s;
 
 		@Before
 		public void setUp() throws Exception {
 			
 
-			School s = new School("name","state","location","control",
+			s = new School("name","state","location","control",
 					1,.5,.5,.5,.5,
 					.5,1,.5,
 					.5,1,1,1
@@ -22,20 +23,12 @@ import static org.junit.Assert.*;
 		
 		@Test
 		public void testCreatesObject() {
-			//TODO
-			School s = new School();
 			assertTrue("School constructor works",!(s==null));
 		}
 
 	
 	@Test
 	public void testGetters() {
-		//TODO
-		School s = new School("name","state","location","control",
-				1,.5,.5,.5,.5,
-				.5,1,.5,
-				.5,1,1,1
-				);
 
 	/*	(String name,String state,String location,String control,
 				int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
@@ -61,12 +54,6 @@ import static org.junit.Assert.*;
 	}
 	@Test
 	public void testSetters() {
-		//TODO
-		School s = new School("name","state","location","control",
-				1,.5,.5,.5,.5,
-				.5,1,.5,
-				.5,1,1,1
-				);
 
 		s.setName("name1");
 		s.setState("state1");
