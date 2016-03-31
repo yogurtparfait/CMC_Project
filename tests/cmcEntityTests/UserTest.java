@@ -8,15 +8,16 @@ import org.junit.Test;
 import entities.*;
 
 public class UserTest {
-
+	private User u;
+	
 	@Before
 	public void setUp() throws Exception {
-		User u = new User();
+		u = new User();
 	}
 	
 	@Test
-	public void test() {
-		//TODO
+	public void testConstructors() {
+		assertTrue("User is not null", !(u==null));
 	}
 
 }
