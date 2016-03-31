@@ -8,22 +8,20 @@ import org.junit.Test;
 import entities.*;
 
 public class AdminTest {
-
+	private Admin a;
+	
 	@Before
 	public void setUp() throws Exception {
-		Admin a = new Admin();
+		a = new Admin();
 	}
 	
 	@Test
 	public void testCreateAdmin() {
-		Admin a = new Admin();
 		assertTrue("Admin a is not null", !(a == null));
 	}
 	
 	@Test
 	public void testSetters() {
-		//TODO
-		Admin a= new Admin("first name","last name","username","password");
 		
 		a.setFirstName("fname");
 		a.setLastName("lname");
