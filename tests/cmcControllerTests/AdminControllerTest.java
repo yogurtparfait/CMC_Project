@@ -9,11 +9,13 @@ import static org.junit.Assert.*;
 	import org.junit.Test;
 
 	public class AdminControllerTest {
-
+		Admin a;
+		AdminController controller;
+		
 		@Before
 		public void setUp() throws Exception {
-			Admin a = new Admin();
-			AdminController controller = new AdminController(a);
+			a = new Admin();
+			controller = new AdminController(a);
 		}
 		
 		@Test
