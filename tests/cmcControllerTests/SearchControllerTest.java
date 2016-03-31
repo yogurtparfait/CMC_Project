@@ -9,10 +9,10 @@ import static org.junit.Assert.*;
 	import org.junit.Test;
 
 	public class SearchControllerTest {
-
+		SearchController controller;
 		@Before
 		public void setUp() throws Exception {
-			SearchController controller = new SearchController();
+			controller = new SearchController();
 		}
 		
 		@Test
