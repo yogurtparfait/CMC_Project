@@ -71,7 +71,7 @@ public class AdminUI extends PersonUI {
 	 * @param type
 	 * @return true on success
 	 */
-	public boolean addPerson(String firstName, String lastName, String password, String username, String type){
+	public boolean addPerson(String firstName, String lastName, String password, String username, char type){
 		return this.controller.addPerson(firstName,lastName,password,username,type);	
 	}
 	/**

@@ -37,7 +37,7 @@ import entities.*;
 					.5,1,.5,
 					.5,1,1,1
 					);
-			controller.addPerson("firstName","lastName","password","username");
+			controller.addPerson("firstName","lastName","password","username",'u');
 			System.out.println(controller.addSavedSchool(u, s));
 			List<School> userSchools = controller.getUserSchools(u);
 			assertTrue("school saved", userSchools.get(0).getName().equals("name"));
@@ -52,8 +52,9 @@ import entities.*;
 			assertTrue("unsave school fails for invalid user",
 					(controller.unSaveSchool(new User("firstName","lastName","password","OtherUsername"), s)==false));
 			
-			controller.unSaveSchool(u, s);
-			assertTrue("unsave school works for valid user and school",controller.getUserSchools(u).isEmpty());
+			assertTrue("unsave school returns true",controller.unSaveSchool(u, s));
+			assertTrue("unsave school removes school from saved schools",
+					controller.getUserSchools(u).isEmpty());
 		}
 		
 		@Test
@@ -63,7 +64,7 @@ import entities.*;
 					.5,1,.5,
 					.5,1,1,1
 					);
-			controller.addPerson("firstName","lastName","password","username");
+			controller.addPerson("firstName","lastName","password","username",'u');
 			
 			assertTrue("School begins unsaved", controller.getUserSchools(u).isEmpty());
 			
@@ -86,13 +87,40 @@ import entities.*;
 		}
 		@Test
 		public void testFindByUsername() {
-			controller.addPerson("firstName","lastName","password","username");
+			boolean b = controller.addPerson("firstName","lastName","password","username",'u');
 			assertTrue("find by username fails for invalid username",(controller.findByUserName("OtherUsername")==null));
-			Person p = controller.findByUserName("firstName");
+			Person p = controller.findByUserName("username");
+			System.out.println(b);
 			assertTrue("found person has right first name",p.getFirstName().equals("firstName"));
-			assertTrue("found person has right last name",p.getFirstName().equals("lastName"));
+			assertTrue("found person has right last name",p.getLastName().equals("lastName"));
 			assertTrue("found person has right password",p.getPassword().equals("password"));
 			assertTrue("found person has right Username",p.getUsername().equals("username"));
+		}
+		@Test
+		public void testCreateSchool() {
+			
+			controller.deleteSchool("name1");
+			
+			assertTrue("createSchool works for new school",
+					controller.createSchool("name1","state","location","control",
+					1,.5,.5,.5,.5,
+					.5,1,.5,
+					.5,1,1,1
+					)==true);
+			
+			School s1 = controller.getSchoolByName("name1");
+			
+			assertTrue("school has right name",s1.getName().equals("name1"));
+			assertTrue("school has right location",s1.getLocation().equals("location"));
+			
+			
+			assertTrue("createSchool fails when school already exists",
+					(controller.createSchool("name1","state","location","control",
+					1,.5,1,.5,.5,
+					.5,1,.5,
+					.5,1,1,1
+					)==false));
+			
 		}
 	}
 

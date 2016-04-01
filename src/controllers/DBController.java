@@ -31,7 +31,7 @@ public class DBController {
 	 */
 	public boolean unSaveSchool(User u, School s){
 		int i = library.user_removeSchool(u.getUsername(),s.getName());
-		if(i==-1) return false;
+		if(i<1) return false;
 		return true;
 	}
 	
@@ -52,7 +52,6 @@ public class DBController {
 	 * @return
 	 */
 	public Person findByUserName(String username){
-		System.out.println("finding by username");
 		String[][] users = library.user_getUsers();
 		for(String[] currentUser:users){
 			if(currentUser[2].equals(username)){
@@ -124,7 +123,6 @@ public class DBController {
 	 */
 	public List<School> getUserSchools(User u){
 		String[][] userSchools = library.user_getUsernamesWithSavedSchools();
-		System.out.println(userSchools ==null);
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		for(String[] currentUsername:userSchools){
@@ -206,12 +204,19 @@ public class DBController {
 	 * @param username username of person
 	 * @return
 	 */
-	public boolean addPerson(String firstName, String lastName, String password, String username){
+	public boolean addPerson(String firstName, String lastName, String password, String username,char type){
+		
 		Person p = this.findByUserName(username);
-		if(!(p==null)) return false;
+		if(!(p==null)) {
+			return false;
+			
+		}
+		
 		else{
-			int i = library.user_addUser(firstName,lastName,username,password,'u');
+			int i = library.user_addUser(firstName,lastName,username,password,type);
 			if(i==-1) return false;
+
+			
 			else return true;
 		}
 	}
@@ -802,4 +807,9 @@ public class DBController {
 			return returnSchools;
 			
 			}
+	public boolean deleteSchool(String schoolName){
+		int i = library.university_deleteUniversity(schoolName);
+		if(i==-1) return false;
+		return true;
+	}
 	}
