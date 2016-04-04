@@ -27,7 +27,7 @@ import static org.junit.Assert.*;
 		}
 
 		@Test
-		public void TestLogOn(){
+		public void testLogOn(){
 
 			PersonUI ui = controller.logOn("ImadUser", "Edited", true);
 			assertTrue("is admin", ui instanceof AdminUI);
@@ -47,6 +47,11 @@ import static org.junit.Assert.*;
 			PersonUI ui = controller.logOn("NotAUser", "NotAPassword", false);
 		}
 		
+		@Test
+		public void testLogout(){
+			testLogOn();
+			assertTrue("logging out", controller.logOut() == true);
+		}
 		
 	}
 
