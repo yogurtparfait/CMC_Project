@@ -132,8 +132,16 @@ import entities.*;
 		
 		@Test
 		public void testGetUserSchools() {
+			controller.deletePerson("username");
 			controller.unSaveSchool(u, s);
+			
+			controller.createSchool("name","state","location","control",
+					1,.5,1,.5,.5,
+					.5,1,.5,
+					.5,1,1,1
+					);
 			controller.addPerson("firstName", "lastName", "password", "username", 'u');
+			
 			List<School> userSchools = controller.getUserSchools(u);
 			assertTrue("getUserSchools returns empty array for user with no saved schools",(userSchools.isEmpty()));
 			controller.addSavedSchool(u, s);
@@ -209,7 +217,7 @@ import entities.*;
 					);
 			
 			assertTrue("Update works when school is in database",
-					!(controller.updateSchool(s,"name","state!!!","location","control",
+					(controller.updateSchool(s,"name","state!!!","location","control",
 							1,.5,1,.5,.5,
 							.5,1,.5,
 							.5,1,1,1
@@ -218,6 +226,84 @@ import entities.*;
 
 			controller.deleteSchool("name");
 		}
+		
+		@Test
+		public void testGetSchools() {
+			List<School> schools = controller.getSchools();
+			assertTrue("getSchools returns non-empty list",!(schools.isEmpty()));
+			assertTrue("getSchools returns correct schools",!(schools.get(0).getName()=="ABILENE CHRISTIAN UNIVERSITY"));
+		}
+		
+		@Test
+		public void findBySchoolName() {
+			assertTrue("findBySchoolName fails for invalid school",
+					(controller.findBySchoolName("eggplant empire")==null));
+			assertTrue("findBySchoolName suceeds for valid school",
+					(controller.findBySchoolName("ABILENE CHRISTIAN UNIVERSITY").getState().equals("TEXAS")));
+		}
+		
+		@Test
+		public void testSearch() {
+			String[] empty = new String[0];
+			List<School> schools1 = controller.search("ABILENE CHRISTIAN UNIVERSITY","","","",
+					-1,-1,-1,-1,-1,
+					-1,-1,-1,
+					-1,-1,-1,-1,empty
+					);
+			assertTrue("find returns correct school",
+					schools1.get(0).getName().equals("ABILENE CHRISTIAN UNIVERSITY"));
+			
+			
+			
+			List<School> schools2 = controller.search("","FLORIDA","","",
+					-1,-1,-1,-1,-1,
+					-1,-1,-1,
+					-1,-1,-1,-1,empty
+					);
+			assertTrue("find returns correct school",
+					schools2.get(0).getName().equals("FLORIDA ACADEMIC UNIVERSITY"));
+			
+			
+			
+			List<School> schools3 = controller.search("","","","",
+					-1,30,-1,-1,-1,
+					-1,-1,-1,
+					-1,-1,-1,-1,empty
+					);
+			assertTrue("find returns correct school",
+					schools3.get(0).getName().equals("CAL TECH"));
+			
+			List<School> schools4 = controller.search("","","","",
+					-1,-1,-1,-1,-1,
+					-1,-1,-1,
+					-1,-1,-1,4,empty
+					);
+			assertTrue("find returns correct school",
+					schools4.get(0).getName().equals("AUBURN"));
+			
+			List<School> schools5 = controller.search("","","URBAN","",
+					-1,-1,-1,-1,-1,
+					-1,-1,-1,
+					-1,-1,-1,-1,empty
+					);
+			assertTrue("find returns correct school",
+					schools5.get(0).getName().equals("AMERICAN UNIVERSITY OF BEIRUT"));
+	}
+		@Test
+		public void testRecommendations() {
+			List<School> schools = controller.getSchools();
+			for(School s1:schools){
+				assertTrue("recommendation works for every school",!(controller.recommendations(s1).isEmpty()));
+		}
+			
+			School s2 = controller.findBySchoolName("BENNINGTON");
+			
+
+			List<School> schools1 = controller.recommendations(s2);
+			assertTrue("School recommends correctly similar school",
+					schools1.get(0).getName().equals("CAL TECH"));
+	}
+		
 	}
 
 

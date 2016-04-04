@@ -322,7 +322,7 @@ public class DBController {
 				percentFemale, SATVerb, SATMath, expenses, percentFinancialAid, numberOfApplicants, 
 				percentAdmitted, percentEnrolled, academicsScale, socialScale, qualityOfLifeScale);
 		
-		if(i==-1) return false;
+		if(i<1) return false;
 		
 		/*
 		for(String e:emphases){
@@ -420,7 +420,7 @@ public class DBController {
 	public School findBySchoolName(String name){
 		String[][] schools = library.university_getUniversities();
 		for(String[] currentSchool:schools){
-		if(currentSchool[0]==name) 
+		if(currentSchool[0].equals(name)) 
 			return new School(
 					//name
 					currentSchool[0],
@@ -646,9 +646,9 @@ public class DBController {
 	public List<School> recommendations(School s){
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
-		School[] schoolList = new School[300];
+		School[] schoolList = new School[1000];
 		double[] searchVector = new double[16];
-		double[] foundVector = new double[180];
+		double[] foundVector = new double[1800];
 		double total = 0;
 		School holder; //placeholder for sorting, total is used for the doubles.
 		int counter = 0;
