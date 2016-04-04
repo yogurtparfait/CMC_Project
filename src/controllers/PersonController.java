@@ -31,7 +31,7 @@ public class PersonController {
 		//Steal does nothing.
 		
 		Person foundPerson = database.findByUserName(username);
-		if(password.equals(foundPerson.getPassword())){
+		if(!(foundPerson==null))if(password.equals(foundPerson.getPassword())){
 			if(database.logInPerson(foundPerson)){
 				if(foundPerson.getIsAdmin()){
 					return new AdminUI((Admin)foundPerson);
