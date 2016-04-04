@@ -42,7 +42,7 @@ public class DBController {
 	 */
 	public boolean addSavedSchool(User u, School s){
 		int i = library.user_saveSchool(u.getUsername(),s.getName());
-		if(i==-1) return false;
+		if(i<1) return false;
 		return true;
 
 	}
@@ -214,7 +214,7 @@ public class DBController {
 		
 		else{
 			int i = library.user_addUser(firstName,lastName,username,password,type);
-			if(i==-1) return false;
+			if(i<1) return false;
 
 			
 			else return true;
@@ -268,7 +268,7 @@ public class DBController {
 			i = library.user_editUser(person.getUsername(),firstName,
 					lastName,password,'u',this.getActiveState(person));
 		}
-		if(i==-1) return false;
+		if(i<1) return false;
 		else return true;
 	}
 	
@@ -316,13 +316,35 @@ public class DBController {
 	public boolean updateSchool(School s, String name,String state,String location,String control,
 			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
-			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
 		
 		int i = library.university_editUniversity(name, state, location, control, numStudents, 
 				percentFemale, SATVerb, SATMath, expenses, percentFinancialAid, numberOfApplicants, 
 				percentAdmitted, percentEnrolled, academicsScale, socialScale, qualityOfLifeScale);
 		
 		if(i==-1) return false;
+		
+		/*
+		for(String e:emphases){
+			int j = library.university_addUniversityEmphasis(name,e);
+			if(j==-1) return false;
+			
+		}
+		*/
+		return true;
+	}	
+	
+	//Override with emphases:
+	public boolean updateSchool(School s, String name,String state,String location,String control,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
+			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
+			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale, String[] emphases){
+		
+		int i = library.university_editUniversity(name, state, location, control, numStudents, 
+				percentFemale, SATVerb, SATMath, expenses, percentFinancialAid, numberOfApplicants, 
+				percentAdmitted, percentEnrolled, academicsScale, socialScale, qualityOfLifeScale);
+		
+		if(i<1) return false;
 		
 		/*
 		for(String e:emphases){
@@ -809,6 +831,11 @@ public class DBController {
 			}
 	public boolean deleteSchool(String schoolName){
 		int i = library.university_deleteUniversity(schoolName);
+		if(i==-1) return false;
+		return true;
+	}
+	public boolean deletePerson(String username){
+		int i = library.user_deleteUser(username);
 		if(i==-1) return false;
 		return true;
 	}

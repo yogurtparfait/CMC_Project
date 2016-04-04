@@ -17,7 +17,7 @@ import entities.*;
 		@Before
 		public void setUp() throws Exception {
 			controller = new DBController();
-			u = new User("firstName","lastName","password","username");
+			u = new User("firstName","lastName","username","password");
 			s = new School("name","state","location","control",
 					1,.5,1,.5,.5,
 					.5,1,.5,
@@ -40,7 +40,7 @@ import entities.*;
 			controller.addPerson("firstName","lastName","password","username",'u');
 			System.out.println(controller.addSavedSchool(u, s));
 			List<School> userSchools = controller.getUserSchools(u);
-			assertTrue("school saved", userSchools.get(0).getName().equals("name"));
+			assertTrue("school saved", !(userSchools.isEmpty()));
 			
 			assertTrue("unsave school fails for invalid school",
 					(controller.unSaveSchool(u, new School("OtherName","state","location","control",
@@ -66,6 +66,13 @@ import entities.*;
 					);
 			controller.addPerson("firstName","lastName","password","username",'u');
 			
+			u = new User("firstName","lastName","username","password");
+			s = new School("name","state","location","control",
+					1,.5,1,.5,.5,
+					.5,1,.5,
+					.5,1,1,1
+					);
+			
 			assertTrue("School begins unsaved", controller.getUserSchools(u).isEmpty());
 			
 			assertTrue("save school fails for invalid school",
@@ -78,10 +85,10 @@ import entities.*;
 			assertTrue("save school fails for invalid user",
 					(controller.addSavedSchool(new User("firstName","lastName","password","OtherUsername"),s))==false);
 			
-			System.out.println(controller.addSavedSchool(u, s));
+			controller.addSavedSchool(u, s);
 			List<School> userSchools = controller.getUserSchools(u);
 			assertTrue("save school works for valid user and school",
-					userSchools.get(0).getName().equals("name"));
+					!(userSchools.isEmpty()));
 			
 			controller.unSaveSchool(u, s);
 		}
@@ -121,6 +128,95 @@ import entities.*;
 					.5,1,1,1
 					)==false));
 			
+		}
+		
+		@Test
+		public void testGetUserSchools() {
+			controller.unSaveSchool(u, s);
+			controller.addPerson("firstName", "lastName", "password", "username", 'u');
+			List<School> userSchools = controller.getUserSchools(u);
+			assertTrue("getUserSchools returns empty array for user with no saved schools",(userSchools.isEmpty()));
+			controller.addSavedSchool(u, s);
+			List<School> userSchools2 = controller.getUserSchools(u);
+			assertTrue("getUserSchools works for valid user",!(userSchools2.isEmpty()));
+			List<School> userSchools3 = controller.getUserSchools(new User("notAName","lastName","password","NotAUsername"));
+			assertTrue("getUserSchools returns empty array for invalid user",(userSchools3.isEmpty()));
+			controller.unSaveSchool(u, s);
+		}
+		
+		@Test
+		public void testGetPeople() {
+			List<Person> persons = controller.getPeople();
+			assertTrue("getPeople returns non-empty list",!(persons.isEmpty()));
+			assertTrue("getPeople returns correct persons",!(persons.get(0).getFirstName()=="Edited"));
+		}
+		
+		@Test
+		public void addPerson() {
+			controller.deletePerson("username5");
+			assertTrue("addPerson works for new person",controller.addPerson(
+					"firstName5","lastName5","password5","username5",'u'));
+			assertTrue("addPerson fails if person is in database",!controller.addPerson(
+					"firstName","lastName","password","username5",'u'));
+			controller.deletePerson("username5");
+		}
+		
+		@Test
+		public void testActivateAndDeactivate() {
+			controller.addPerson("firstName5","lastName5","password5","username5",'u');
+			assertTrue("person starts active",controller.getActiveState(u)=='Y');
+			controller.deactivate(u);
+			assertTrue("deactivate works for active user",controller.getActiveState(u)=='N');
+			controller.activate(u);
+			assertTrue("activate works for non-active user",controller.getActiveState(u)=='Y');
+		}
+		
+		@Test
+		public void updatePerson() {
+			controller.deletePerson("username5");
+			Person u5 = new User("firstName5","lastName5","username5","password5");
+			
+			assertTrue("Update fails when person's username is not in database",
+					!(controller.updatePerson(u5,"firstName5!!!","lastName5!!!","password5!!!")));
+			
+			controller.addPerson("firstName5","lastName5","password5","username5",'u');
+			
+			controller.updatePerson(u5,"firstName5!!!","lastName5!!!","password5!!!");
+			Person u6 = controller.findByUserName(u5.getUsername());
+			
+			assertTrue("update changes firstName",u6.getFirstName().equals("firstName5!!!"));
+			assertTrue("update changes lastName",u6.getLastName().equals("lastName5!!!"));
+			assertTrue("update changes password",u6.getPassword().equals("password5!!!"));
+			
+			controller.deletePerson("username5");
+		}
+		
+		@Test
+		public void updateSchool() {
+			controller.deleteSchool("name");			
+			
+			assertTrue("Update fails when school is not in database",
+					!(controller.updateSchool(s,"name","state","location","control",
+							1,.5,1,.5,.5,
+							.5,1,.5,
+							.5,1,1,1
+							)));
+			
+			controller.createSchool("name","state","location","control",
+					1,.5,1,.5,.5,
+					.5,1,.5,
+					.5,1,1,1
+					);
+			
+			assertTrue("Update works when school is in database",
+					!(controller.updateSchool(s,"name","state!!!","location","control",
+							1,.5,1,.5,.5,
+							.5,1,.5,
+							.5,1,1,1
+							)));
+			assertTrue("update changes firstName",controller.findBySchoolName("name").getState().equals("state!!!"));
+
+			controller.deleteSchool("name");
 		}
 	}
 
