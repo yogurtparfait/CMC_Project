@@ -37,12 +37,12 @@ import static org.junit.Assert.*;
 
 		}
 		
-		@Test 
+		@Test (expected = IllegalArgumentException.class)
 		public void testLogOnBadPassword() {
 			PersonUI ui = controller.logOn("ImadUser", "wrong", true);
 		}
 		
-		@Test 
+		@Test (expected = IllegalArgumentException.class)
 		public void testLogOnBadUserName(){
 			PersonUI ui = controller.logOn("NotAUser", "NotAPassword", false);
 		}
