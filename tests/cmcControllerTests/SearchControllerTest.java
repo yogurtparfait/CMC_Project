@@ -15,10 +15,7 @@ import static org.junit.Assert.*;
 			controller = new SearchController();
 		}
 		
-		@Test
-		public void test() {
-			//TODO
-		}
+
 
 	}
 
