@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import dblibrary.project.csci230.*;
 import entities.*;
-import interfaces.*;
+
 /**
  * Controller for the Database, that includes all of the functionalities.
  * @author Noah, Megan, Jordan, Yang
@@ -31,7 +31,7 @@ public class DBController {
 	 */
 	public boolean unSaveSchool(User u, School s){
 		int i = library.user_removeSchool(u.getUsername(),s.getName());
-		if(i==-1) return false;
+		if(i<1) return false;
 		return true;
 	}
 	
@@ -52,7 +52,6 @@ public class DBController {
 	 * @return
 	 */
 	public Person findByUserName(String username){
-		System.out.println("finding by username");
 		String[][] users = library.user_getUsers();
 		for(String[] currentUser:users){
 			if(currentUser[2].equals(username)){
@@ -93,7 +92,7 @@ public class DBController {
 	 * @param control
 	 * @param numStudents
 	 * @param percentFemale 
-	 * @param SATVerb
+	 * @param d
 	 * @param SATMath
 	 * @param expenses
 	 * @param percentFinancialAid
@@ -106,7 +105,7 @@ public class DBController {
 	 * @return
 	 */
 	public boolean createSchool(String name,String state,String location,String control,
-			int numStudents,double percentFemale,int SATVerb,double SATMath,double expenses,
+			int numStudents,double percentFemale,double SATVerb,double SATMath,double expenses,
 			double percentFinancialAid,int numberOfApplicants,double percentAdmitted,
 			double percentEnrolled,int academicsScale,int socialScale,int qualityOfLifeScale){
 		
@@ -124,7 +123,6 @@ public class DBController {
 	 */
 	public List<School> getUserSchools(User u){
 		String[][] userSchools = library.user_getUsernamesWithSavedSchools();
-		System.out.println(userSchools ==null);
 		String[][] schools = library.university_getUniversities();
 		List<School> returnSchools = new ArrayList<School>();
 		for(String[] currentUsername:userSchools){
@@ -132,7 +130,6 @@ public class DBController {
 			for(String[] currentSchool:schools){
 				if(currentUsername[1].equals(currentSchool[0])){
 					returnSchools.add(new School(
-							//Fix all these parameter types
 							//name
 							currentSchool[0],
 							//state
@@ -207,12 +204,19 @@ public class DBController {
 	 * @param username username of person
 	 * @return
 	 */
-	public boolean addPerson(String firstName, String lastName, String password, String username){
+	public boolean addPerson(String firstName, String lastName, String password, String username,char type){
+		
 		Person p = this.findByUserName(username);
-		if(!(p==null)) return false;
+		if(!(p==null)) {
+			return false;
+			
+		}
+		
 		else{
-			int i = library.user_addUser(firstName,lastName,username,password,'u');
+			int i = library.user_addUser(firstName,lastName,username,password,type);
 			if(i==-1) return false;
+
+			
 			else return true;
 		}
 	}
@@ -803,4 +807,9 @@ public class DBController {
 			return returnSchools;
 			
 			}
+	public boolean deleteSchool(String schoolName){
+		int i = library.university_deleteUniversity(schoolName);
+		if(i==-1) return false;
+		return true;
+	}
 	}

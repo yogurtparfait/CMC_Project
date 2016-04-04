@@ -67,8 +67,9 @@ public class AdminController extends PersonController{
 			 * @param type
 			 * @return true on success
 			 */
-			public boolean addPerson(String firstName, String lastName, String password, String username, String type){
-				return database.addPerson(firstName, lastName, password, username);
+			public boolean addPerson(String firstName, String lastName, String password, String username, char type){
+				if(!(type=='a'||type=='u')) return false;
+				return database.addPerson(firstName, lastName, password,username, type);
 			}
 			
 			/**
