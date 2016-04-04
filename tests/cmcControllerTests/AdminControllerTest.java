@@ -19,9 +19,18 @@ import static org.junit.Assert.*;
 		}
 		
 		@Test
-		public void test() {
-			//TODO
+		public void testConstructor() {
+			assertTrue("AdminController's controller works",!(controller==null));
 		}
+		
+		@Test
+		public void testAddPerson(){
+
+			assertTrue("controller is an admin", controller.addPerson("firstName", "lastName", "password", "username", 'a')==false);
+			assertTrue("controller is an admin", controller.addPerson("firstName", "lastName", "password", "username", 'u')==false);
+			assertFalse("controller is an admin", controller.addPerson("firstName", "lastName", "password", "username", 'c')==true);
+		}	
+
 
 	}
 

@@ -27,12 +27,15 @@ public class AdminTest {
 		a.setLastName("lname");
 		a.setUsername("username1");
 		a.setPassword("password1");
+		a.setIsAdmin(true);
 		
 		assertTrue("first name works", a.getFirstName().equals("fname"));
 		assertTrue("last name works", a.getLastName().equals("lname"));
 		assertTrue("username works", a.getUsername().equals("username1"));
 		assertTrue("password works", a.getPassword().equals("password1"));
+		assertTrue("this is an admin",a.getIsAdmin() == true);
 	}
 
 
 }
+
