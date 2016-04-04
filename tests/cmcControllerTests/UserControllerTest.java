@@ -55,7 +55,9 @@ import static org.junit.Assert.*;
 			testString.add(Integer.toString(3));
 			testString.add(Integer.toString(3));
 			
+			
 			for(int i = 0; i < testString.size(); i++){
+				System.out.println(actualString.get(i));
 			assertTrue("It should be equal" + testString.get(i) + " and " + actualString.get(i) , testString.get(i).equals(actualString.get(i)));
 		
 			}

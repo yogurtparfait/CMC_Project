@@ -55,7 +55,7 @@ public class UserController {
 		returnString.add(Integer.toString(s.getSocialScale()));
 		returnString.add(Integer.toString(s.getQualityOfLifeScale()));
 		
-		for(String e:s.getEmphases()){
+		if(!(s.getEmphases()==null)) for(String e:s.getEmphases()){
 			returnString.add(e);
 			
 		}
