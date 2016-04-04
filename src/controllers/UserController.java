@@ -1,9 +1,10 @@
 package controllers;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import entities.*;
 import interfaces.*;
+
 /**
  * @author Megan Jordan Noah Yang
  *
@@ -54,8 +55,12 @@ public class UserController {
 		returnString.add(Integer.toString(s.getSocialScale()));
 		returnString.add(Integer.toString(s.getQualityOfLifeScale()));
 		
+		
+		
+		
 		for(String e:s.getEmphases()){
 			returnString.add(e);
+			
 		}
 		
 		return returnString;
