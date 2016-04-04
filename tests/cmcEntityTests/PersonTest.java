@@ -40,6 +40,22 @@ import static org.junit.Assert.*;
 			
 		}
 		
+		public void testGetters(){
+			
+			p.setFirstName("fname");
+			p.setLastName("lname");
+			p.setUsername("username1");
+			p.setPassword("password1");
+			p.setIsAdmin(true);
+			
+			assertTrue("first name works", p.getFirstName().equals("fname"));
+			assertTrue("last name works", p.getLastName().equals("lname"));
+			assertTrue("username works", p.getUsername().equals("username1"));
+			assertTrue("password works", p.getPassword().equals("password1"));
+			assertTrue("isAdmin", (p.getIsAdmin() == true));
+			
+		}
+		
 
 	}
 
