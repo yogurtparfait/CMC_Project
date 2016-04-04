@@ -37,16 +37,18 @@ public class PersonController {
 					return new AdminUI((Admin)foundPerson);
 				}
 				else //Person is user 
-					{ return new UserUI((User)foundPerson);
+					{ 
+						return new UserUI((User)foundPerson);
 					}
 			}
-			else return null;//make sure to catch this
+		else 
+			throw new IllegalArgumentException("Password incorrect");
 				
 			
 		}
 	
 			
-		return null;//make sure to catch this
+		throw new IllegalArgumentException("Username incorrect");
 	}
 	
 	/**
