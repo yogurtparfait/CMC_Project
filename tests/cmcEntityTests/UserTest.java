@@ -19,5 +19,14 @@ public class UserTest {
 	public void testConstructors() {
 		assertTrue("User is not null", !(u==null));
 	}
+	
+	@Test
+	public void testSet(){
+		School[] savedSchools = new School[1];
+		u.setSavedSchools(savedSchools);
+		
+		assertTrue("setSavedSchool works", u.getSavedSchools().equals(savedSchools));
+		
+	}
 
 }
