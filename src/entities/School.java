@@ -21,7 +21,7 @@ public class School {
 	private int academicsScale;
 	private int socialScale;
 	private int qualityOfLifeScale;
-	private String[] emphases;
+	private String[] emphases = new String[10];
 
 	public School(){}
 	/**
